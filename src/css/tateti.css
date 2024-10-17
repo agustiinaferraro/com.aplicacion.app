@@ -1,0 +1,87 @@
+#g1 .montserrat-uniquifier {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+
+#g1 #estado {
+      text-align: center; /*centra el contenido del parrafo */
+      font-size: 1.5em; 
+      margin: 20px 0; 
+  }
+
+#g1 #botonReiniciar {
+      display: block; /* asegura que el boton se comporte como un bloque para que el margin funcione */
+      margin: 20px auto; /*centra el botón horizontalmente */
+      border-radius: 10px;
+      padding: 15px;
+      background-color: #6693bf;
+      color: aliceblue;
+      font-size: 1em;
+      box-shadow: -3px -3px 5px rgb(118, 118, 118); /*sombra a la izquierda y arriba */
+      border: none;
+  }
+  
+#g1 table, button {
+    margin: 10px auto; /*centra la tabla y el boton */
+}
+  
+#g1 h2 {
+      text-align: center;
+      font-size: 3em;
+      padding: 0;
+}
+  
+#g1 table, td {
+      width: 30%;
+      text-align: center;
+      border-radius: 20px;
+      padding: 1em 
+}
+  
+#g1 button:hover {
+      background-color: #496683;
+      color: rgb(255, 255, 255);
+}
+  
+#g1 td {
+      background-color: rgba(57, 7, 75, 0.4); /*fondo opacidad */
+      height: 50px;
+      box-shadow: -5px -5px 5px rgb(58, 58, 58); /* sombra hacia la izquierda y arriba */
+      justify-content: space-between;
+      border-collapse: separate;
+      border-spacing: 10px 10px 10px 10px;
+      font-size: 2em;
+}
+  
+#g1 .desactivado{
+      cursor: not-allowed; /*cambia el mouse cuando pasa por una celda que ya tiene contenido */
+      background-color: #d6d6d6;
+      font-weight: bold;
+  
+}
+  
+#g1 .celda:hover{
+      background-color: #6693bf;
+}
+  
+#g1 .desactivado:hover{
+      background-color: #b1b1b1;
+      color: #787878;
+}
+  
+#g1 button:disabled {
+      background-color: rgb(160, 160, 160);
+      color: #c5c5c5;
+      border: none;
+      cursor: not-allowed; 
+}
+
+.celda.corazon {
+      background-color: #ffcccc; /*color para corazones*/
+  }
+  
+  .celda.estrella {
+      background-color: #cce5ff; /*color para estrellas */
+  }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación</title>
+    <meta 
+    name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minium-scale=1.0, maximum-scale="
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <script
+    type="module"
+    src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpawelements.esm.js"
+    ></script>
+    <script
+    nomodule
+    src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpawelements/ionicpawelements.js"
+    ></script>
+    
+    <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.ico" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="./css/style.css" /> 
+    <link rel="stylesheet" href="./css/tateti.css" /> 
+
+</head>
+<body>
+    <div id="main">
+        <h2 id="mygames">My games</h2>
+        <button id="btn-g1">Ta Te Ti</button>
+        <button id="btn-g2">Generala</button>
+        <button id="btn-g3">Game 3</button>
+    </div>
+    
+    <div id="perfil" class="nodisp">
+        <h2>Perfil</h2>
+        <form>
+            <label for="name">Nombre: </label>
+            <input id="name" name="name"/>
+            <br>
+            <label for="nick">Apodo: </label>
+            <input id="nick" name="nick" />
+            <br>
+            <input id="savePreferences" type="submit" value="Guardar">
+        </form>
+    </div>
+
+    <div id="g1" class="game nodisp">
+        <button id="btn-g1-back">🔙</button>
+        <h2>Ta Te Ti</h2>
+            <table>
+                <tr>
+                    <td class="celda" data-index="0" data-type="corazon"></td>
+                    <td class="celda" data-index="1" data-type="estrella"></td>
+                    <td class="celda" data-index="2" data-type="corazon"></td>
+                </tr>
+                <tr>
+                    <td class="celda" data-index="3" data-type="estrella"></td>
+                    <td class="celda" data-index="4" data-type="corazon"></td>
+                    <td class="celda" data-index="5" data-type="estrella"></td>
+                </tr>
+                <tr>
+                    <td class="celda" data-index="6" data-type="corazon"></td>
+                    <td class="celda" data-index="7" data-type="estrella"></td>
+                    <td class="celda" data-index="8" data-type="corazon"></td>
+                </tr>
+            </table>
+           
+                 <p id="estado">Turno de: </p>
+           
+                 <button id="botonReiniciar" disabled>Reiniciar</button>
+    </div>
+
+    <div id="g2" class="game nodisp">
+        <button id="btn-g2-back">🔙</button>
+        <h2>Generala</h2>
+     
+        <div class="dados">
+            <!--nrs de los dados -->
+            <div class="dado" id="dado1">-</div>
+            <div class="dado" id="dado2">-</div>
+            <div class="dado" id="dado3">-</div>
+            <div class="dado" id="dado4">-</div>
+            <div class="dado" id="dado5">-</div>
+          </div>
+          <button onclick="tirarDados()">Tirar</button>
+
+    </div>
+    
+    <div id="g3" class="game nodisp">
+        <button id="btn-g3-back">🔙</button>
+        <h2>Game 3</h2>
+        <p>El juego 3 acá...</p>
+    </div>
+
+    <script src="./js/script.js" type="module"></script> 
+    <script src="./js/tateti.js" type="module"></script> 
+    <script src="./js/generala.js" type="module"></script> 
+
+</body>
+</html>

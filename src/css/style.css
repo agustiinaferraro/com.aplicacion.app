@@ -1,0 +1,104 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+#main{
+  width: 95%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  flex-direction: column;
+  gap: 1rem;
+
+  background: linear-gradient(rgb(94, 57, 153), rgb(51, 20, 129));  
+}
+
+#main > button {
+  display: block;
+  padding: 2rem;
+  border-radius: 10px;
+  font-size: 1em;
+  box-shadow: -3px -3px 5px rgb(24, 24, 24); /* Sombra a la izquierda y arriba */
+  border: none;
+  color: aliceblue;
+  font-weight: bold;
+}
+
+.nodisp {
+  display: none !important;
+}
+
+#g1 {
+  background: linear-gradient(blue, pink);  
+  color: white;
+}
+
+#g2 {
+  background-color: yellow;
+}
+
+#g3 {
+  background-color: green;
+  color: white;
+}
+
+#main, #perfil, .game {
+  padding: 0;
+  padding-top: env(safe-area-inset-top); /*resuelve el notch*/
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+
+
+
+
+/* Para el div 'perfil', oculto inicialmente */
+#perfil {
+  width: 300px; /* Ancho fijo */
+  padding: 20px; /* Espacio interno */
+  margin: 0 auto; /* Centrado horizontal */
+  background-color: #651a1a; /* Fondo claro */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle relieve */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+#btn-g1-back, #btn-g2-back, #btn-g3-back{
+  font-size: 2rem;
+}
+
+#main button:hover {
+  background-color: #2a2f35;
+  color: rgb(255, 255, 255);
+}
+
+#btn-g1{
+  background-color: #a61973;
+}
+
+#btn-g2{
+  background-color: #3115b0;
+}
+
+#btn-g3{
+  background-color: #0a8061;
+}
+
+#mygames{
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: aliceblue;
+}
