@@ -2,28 +2,24 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Aplicación</title>
     <meta 
     name="viewport"
-    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minium-scale=1.0, maximum-scale="
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
     />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
 
-    <script
-    type="module"
-    src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpawelements.esm.js"
-    ></script>
-    <script
-    nomodule
-    src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpawelements/ionicpawelements.js"
-    ></script>
+    <script type="module" src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.esm.js"></script>
+    <script nomodule src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.js"></script>
+
     
     <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.ico" />
     <link rel="manifest" href="./manifest.json" />
     <link rel="stylesheet" href="./css/style.css" /> 
     <link rel="stylesheet" href="./css/tateti.css" /> 
+    <link rel="stylesheet" href="./css/generala.css" /> 
 
 </head>
 <body>
@@ -74,19 +70,21 @@
     </div>
 
     <div id="g2" class="game nodisp">
-        <button id="btn-g2-back">🔙</button>
-        <h2>Generala</h2>
-     
-        <div class="dados">
-            <!--nrs de los dados -->
-            <div class="dado" id="dado1">-</div>
-            <div class="dado" id="dado2">-</div>
-            <div class="dado" id="dado3">-</div>
-            <div class="dado" id="dado4">-</div>
-            <div class="dado" id="dado5">-</div>
-          </div>
-          <button onclick="tirarDados()">Tirar</button>
-
+        <div class="game-cont">
+            <button id="btn-g2-back">🔙</button>
+            <h2 class="text-center">Generala</h2>
+        
+            <div class="dice-container">
+                <div class="dice d0"></div>
+                <div class="dice d1"></div>
+                <div class="dice d2"></div>
+                <div class="dice d3"></div>
+                <div class="dice d4"></div>
+            </div>
+                <div class="controls">
+                    <button id="dice-roll">Tirar</button>
+                </div>
+        </div>  
     </div>
     
     <div id="g3" class="game nodisp">

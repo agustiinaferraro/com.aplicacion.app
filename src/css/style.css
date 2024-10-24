@@ -44,11 +44,11 @@ body {
 }
 
 #g2 {
-  background-color: yellow;
+  background-color: rgb(5, 89, 14);
 }
 
 #g3 {
-  background-color: green;
+  background-color: rgb(126, 128, 0);
   color: white;
 }
 
@@ -59,6 +59,7 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 
 
 
