@@ -1,4 +1,4 @@
-.dado {
+.dice {
     border: 2px solid transparent;
     display: inline-block;
     padding: 10px;
@@ -9,5 +9,18 @@
     border: 2px solid red;
 }
 
+#generala-player, #generala-moves {
+    font-weight: bolder;
+}
 
 
+/*.dado {
+    border: 2px solid transparent;
+    display: inline-block;
+    padding: 10px;
+    margin: 20px;
+}
+
+.dice.selected {
+    border: 2px solid red;
+}*/
