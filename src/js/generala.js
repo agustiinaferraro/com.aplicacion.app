@@ -4,6 +4,7 @@ const AT_QUARTER = 0.25 * DICE_SIZE;
 const AT_HALF = 0.5 * DICE_SIZE;
 const AT_3QUARTER = 0.75 * DICE_SIZE;
 
+//const porque a const no le puedo cambiar su valor, a let si
 const reEscalera = /12345|23456|13456/;
 const reGenerala = /1{5}|2{5}|3{5}|4{5}|5{5}|6{5}/;
 const rePoker = /1{4}(2|3|4|5|6)|12{4}|2{4}(3|4|5|6)|(1|2)3{4}|3{4}(4|5|6)|(1|2|3)4{4}|4{4}(5|6)|(1|2|3|4)5{4}|5{4}6|(1|2|3|4|5)6{4}/;
@@ -15,6 +16,8 @@ const game = {
   players: 2, //numero de jugadores
   turn: 1, //turno de los jugadores
   moves: 1, //tiro de los jugadores
+  scores: [], //array vacio donde se van a guardar los puntajes de los jugadores
+  round: 1, //numero de ronda
 }
 
 const initGame = () => { //funcion para el click en los dados
@@ -22,17 +25,129 @@ const initGame = () => { //funcion para el click en los dados
   game.selectedDices = [false, false, false, false, false]; // segundo array lo inicializo todo en false
   game.turn = 1; //turno del jugador
   game.moves = 1; //arranca en el primer tiro
+  for (let i = 0; i < game.players; i++) { //recorre el array players
+    game.scores.push([" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", 0]);//espacios vacios si no jugue, y si jugue es un numero. El 0 es e total
+  }
 
   document.querySelectorAll(".dice-container .dice").forEach(diceElement => { //div de cada dado
     diceElement.addEventListener("click", () => toggleDiceSelection(parseInt(diceElement.getAttribute("class").replace("dice d", "")))); //toggleDiceSelection es para invertir el true/false (si era false pone true)
   });
   
-  drawDices(); // Dibuja los dados al iniciar
+  drawDices(); //dibuja los dados al iniciar
   drawState(); //actualiza el div con el jugador y el tiro 
+  drawScores();
 }
 
-const igGameMatch = regex => { //expresion regular como parametro
+
+
+
+
+
+
+const drawScores = () => {
+  // encabezado tabla
+  const contHeader = document.querySelector("#g2 .scores table thead tr");
+  contHeader.innerHTML = null;
+  const cellGame = document.createElement("th");
+  cellGame.innerHTML = "Juego";
+  contHeader.appendChild(cellGame);
+  for (let i = 0; i < game.players; i++) {
+    const cellPlayerName = document.createElement("th");
+    cellPlayerName.innerHTML = `J${i + 1}`; // en la app, usar el nick del jugador que tengo guardado en el perfil
+    contHeader.appendChild(cellPlayerName);
+  }
+
+  // juegos
+  const contGames = document.querySelector("#g2 .scores table tbody");
+  contGames.innerHTML = null;
+  for (let i = 0; i < 11; i++) {
+    const contGame = document.createElement("tr");
+    const cellGameName = document.createElement("td");
+    cellGameName.innerHTML = getGameName(i);
+    contGame.appendChild(cellGameName);
+    for (let p = 0; p < game.players; p++) {
+      const cellPlayerScore = document.createElement("td");
+      cellPlayerScore.innerHTML = game.scores[p][i];
+      contGame.appendChild(cellPlayerScore);
+    }
+    contGames.appendChild(contGame); // Aquí se agregó el contGame al contGames
+    contGame.addEventListener("click", () => {
+      if (game.dices.some(dice => dice === 0)) { // si todavia no tire nada
+          return; // ignoro el click
+      }
+      console.info(`Attempt to score on game ${getGameName(i)}`);
+      if (game.scores[game.turn - 1][i] !== " ") { // si en la celda ya tengo algo anotado
+        alert(`Ya se anoto el juego ${getGameName(i)}`); // le aviso al jugador, e ignoro el click
+        return;
+      } else { // en caso contrario
+        const score = calculateScore(i); // despues de esta linea van los controles para ver si se lo quiere tachar con la x
+        game.scores[game.turn - 1][i] = score === 0 ? "X" : score; // anoto
+        game.scores[game.turn - 1][11] += score; // total
+        drawScores();
+        changePlayerTurn(); // paso el turno al otro jugador
+      }
+    });
+  }
+
+  // total
+  const contTotal = document.createElement("tr");
+  const cellTotalName = document.createElement("td");
+  cellTotalName.innerHTML = "Total";
+  contTotal.appendChild(cellTotalName);
+  for (let p = 0; p < game.players; p++) {
+    const cellPlayerTotal = document.createElement("td");
+    cellPlayerTotal.innerHTML = game.scores[p][11];
+    contTotal.appendChild(cellPlayerTotal);
+  }
+  contGames.appendChild(contTotal);
+}
+
+
+
+
+
+
+
+
+
+
+const isGameMatch = regex => { //expresion regular como parametro
   return game.dices.slice().sort((d1, d2) => d1 - d2).join("").match(regex) !== null; //game.dices array //en d1 y d2 ordena de menor a mayor, //join lo convierte en un string con el separador vacio, //la funcion match devuelve la expresion logica, y si no matchea devuelve null
+}
+
+const calculateScore = whichGame => { //calcula los puntos
+  let score = 0;
+  switch (whichGame) { //el parametro es el indice de un array, arranca desde 0
+    case 6: 
+        if (isGameMatch(reEscalera)) { //si al primer tiro hace escalera, 
+            score = game.moves === 2 ? 25 : 20; //son 25 puntos, si no es el primer tiro, son 20 (asi para todos los juegos)
+        }
+      break;
+    case 7:
+      if (isGameMatch(reFull)) {
+        score = game.moves === 2 ? 35 : 30;
+    }
+      break;
+    case 8:
+      if (isGameMatch(rePoker)) {
+        score = game.moves === 2 ? 45 : 40;
+    }
+      break;
+    case 9:
+      if (isGameMatch(reGenerala)) {
+        score = game.moves === 2 ? 55 : 50;
+    }
+      break;
+    case 10:
+      if (isGameMatch(reGenerala)) {
+        score = game.moves === 2 ? 105 : 100;
+    }
+      break;
+    default: //nms 1 al 6
+      score = game.dices.filter(dice => dice - 1 === whichGame + 1).reduce((acc, cur) => acc + cur, 0); //al array de dices(de nrs), se le aplica la funcion filter, y el parametro es una funcion que cuando es true lo que devuelve se queda en el array, y cuando es false no queda. filter va a devolver otro array de nrs que solo va a tener los elementos que encajen con esa funcion
+      break; //reduce tiene dos parametros, acc: cuanto llevo acumulado. cur: valor actual del dado. Despues, suma el dado actual + lo que tenia antes, y arranco desde 0 
+  }
+  return score;
 }
 
 const drawDices = () => {
@@ -43,7 +158,7 @@ const drawDices = () => {
     } else {
       diceElement.classList.remove("selected");
     }
-    showDice(diceElement, dice); // Cambiado para mostrar el dado correcto
+    showDice(diceElement, dice); // muestra el dado correcto
   });
 }
 
@@ -61,15 +176,38 @@ const rollDices = () => {
   game.selectedDices = [false, false, false, false, false] // cuando termine con todos los dados reseto la selección
   drawDices(); //vuelvo a dibujar
 
+  console.log('---'); //en la consola dice como quedaron los dados despues del tiro, cuales son los potenciales puntajes para ese dado
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(whichGame => console.log(`Game ${getGameName(whichGame)} score: ${calculateScore(whichGame)}`));
+
   game.moves++;
   if (game.moves > 3) { //si ya se terminan las jugadas vuelve a la primera en game.moves = 1
-    game.moves = 1; //vuelve al primer tiro
+      document.getElementById("dice-roll").setAttribute("disabled", "disabled");
     game.turn++;
-    if (game.turn > game.players) { //si game.turn es mayor a game.playes
-      game.turn = 1; //game.turn es igual a 1
+  } else {
+    drawState(); //una  vez que cambio el turno, actualiza el estado de juego (div)
+  }
+}
+
+const getGameName = whichGame => {
+  const games = ['1', '2', '3', '4', '5', '6', 'E', 'F', 'P', 'G', 'D'];
+  return games[whichGame];
+}
+
+const changePlayerTurn = () => {
+  game.dices = [0, 0, 0, 0, 0,];
+  game.selectedDices = [false, false, false, false, false];
+  game.moves = 1;
+  game.turn++
+  if (game.turn > game.players) {
+    game.turn = 1;
+    game.round++;
+    if (game.round > 11) { //si las rondas son mayores a 11
+      gameOver(); //llama a la funcion para terminar el juego
     }
   }
-  drawState(); //una  vez que cambio el turno, actualiza el estado de juego (div)
+  document.getElementById("dice-roll").removeAttribute("disabled");
+  drawDices();
+  drawState();
 }
 
 const toggleDiceSelection = diceNumber => { //recibe el nro de los div (0,1,2,3 o 4)
@@ -80,6 +218,19 @@ const toggleDiceSelection = diceNumber => { //recibe el nro de los div (0,1,2,3 
   } else {
     diceElement.classList.remove("selected"); // si es false quita el estilo
   }
+}
+
+const gameOver = () => {
+  document.getElementById("dice-roll").setAttribute("disabled", "disabled");
+  let winner = 0;
+  let winningScore = 0;
+  for (let i = 0; i< game.players; i++) {
+    if (game.scores[i][11] > winningScore) {
+      winningScore = game.scores[i][11];
+      winner = i;
+    }
+  }
+  alert(`J${winner} won with ${winningScore} points`); //cambiar por un modal 
 }
 
 /* Draw dices code begins */

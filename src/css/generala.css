@@ -9,18 +9,38 @@
     border: 2px solid red;
 }
 
-#generala-player, #generala-moves {
+.dice.selected {
+    border: 2px solid red;
+}
+
+#generala-player,
+#generala-moves {
     font-weight: bolder;
 }
 
-
-/*.dado {
-    border: 2px solid transparent;
-    display: inline-block;
-    padding: 10px;
-    margin: 20px;
+#g2 .scores {
+    margin: 1rem;
+    font-size: 1.25rem;
 }
 
-.dice.selected {
-    border: 2px solid red;
-}*/
+#g2 .scores table {
+    border-collapse: collapse;
+}
+
+#g2 .scores th, #g2 .scores td {
+    padding: 0.25rem;
+    min-width: 4rem;
+
+    text-align: center;
+
+    border: 1px solid white;
+}
+
+#g2 .scores table tbody tr {
+    cursor: pointer;
+}
+
+#g2 .scores table tbody tr:last-of-type td {
+    font-weight: bold;
+    cursor: default;
+}
