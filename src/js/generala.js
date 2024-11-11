@@ -143,8 +143,11 @@ const calculateScore = whichGame => { //calcula los puntos
         score = game.moves === 2 ? 105 : 100;
     }
       break;
-    default: //nms 1 al 6
-      score = game.dices.filter(dice => dice - 1 === whichGame + 1).reduce((acc, cur) => acc + cur, 0); //al array de dices(de nrs), se le aplica la funcion filter, y el parametro es una funcion que cuando es true lo que devuelve se queda en el array, y cuando es false no queda. filter va a devolver otro array de nrs que solo va a tener los elementos que encajen con esa funcion
+      default: //clculo para numeros de 1 a 6
+      //ajusta el filtro para que coincida correctamente con los dados
+      score = game.dices
+        .filter(dice => dice === whichGame + 1) //filtra los dados que son iguales al indice + 1
+        .reduce((acc, cur) => acc + cur, 0); //uma los valores filtrados
       break; //reduce tiene dos parametros, acc: cuanto llevo acumulado. cur: valor actual del dado. Despues, suma el dado actual + lo que tenia antes, y arranco desde 0 
   }
   return score;
@@ -182,7 +185,7 @@ const rollDices = () => {
   game.moves++;
   if (game.moves > 3) { //si ya se terminan las jugadas vuelve a la primera en game.moves = 1
       document.getElementById("dice-roll").setAttribute("disabled", "disabled");
-    game.turn++;
+   // game.turn++;
   } else {
     drawState(); //una  vez que cambio el turno, actualiza el estado de juego (div)
   }
