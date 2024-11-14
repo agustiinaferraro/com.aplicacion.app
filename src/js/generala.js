@@ -32,6 +32,7 @@ const initGame = () => { //funcion para el click en los dados
   document.querySelectorAll(".dice-container .dice").forEach(diceElement => { //div de cada dado
     diceElement.addEventListener("click", () => toggleDiceSelection(parseInt(diceElement.getAttribute("class").replace("dice d", "")))); //toggleDiceSelection es para invertir el true/false (si era false pone true)
   });
+
   
   drawDices(); //dibuja los dados al iniciar
   drawState(); //actualiza el div con el jugador y el tiro 
@@ -173,24 +174,23 @@ const drawState = () => { //funcion para actualizar los datos
 }
 
 const rollDices = () => {
+  // Deshabilitar el botón "back" al tirar los dados
+  document.getElementById("btn-g2-back").setAttribute("disabled", "disabled");
+
   for (let i = 0; i < game.dices.length; i++) {
-    if (game.moves === 1 || game.selectedDices[i]) { //la condicion 1 es para que en el primer turno de c/jugador no se tenga que elegir 
-      //ningun dado (puede tirar sin seleccionar nada) //si el dado esta seleccionado
-      game.dices[i] = Math.floor(Math.random() * 6) + 1; //lo tiro
+    if (game.moves === 1 || game.selectedDices[i]) { 
+      game.dices[i] = Math.floor(Math.random() * 6) + 1;
     }
   }
-  game.selectedDices = [false, false, false, false, false] // cuando termine con todos los dados reseto la seleccion
-  drawDices(); //vuelvo a dibujar
 
-  //console.log('---'); //en la consola dice como quedaron los dados despues del tiro, cuales son los potenciales puntajes para ese dado
-  //[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(whichGame => console.log(`Game ${getGameName(whichGame)} score: ${calculateScore(whichGame)}`));
+  game.selectedDices = [false, false, false, false, false]; // Resetea la selección de dados
+  drawDices(); // Redibuja los dados
 
   game.moves++;
-  if (game.moves > 3) { //si ya se terminan las jugadas vuelve a la primera en game.moves = 1
+  if (game.moves > 3) { // Deshabilita el botón de tirar si ya se realizaron los tres tiros
       document.getElementById("dice-roll").setAttribute("disabled", "disabled");
-   // game.turn++;
   } else {
-    drawState(); //una  vez que cambio el turno, actualiza el estado de juego (div)
+    drawState(); // Actualiza el estado de juego
   }
 }
 
@@ -204,6 +204,13 @@ const changePlayerTurn = () => {
   game.selectedDices = [false, false, false, false, false];
   game.moves = 1;
   game.turn++
+
+   // Rehabilita el botón de "Tirar" si no se ha alcanzado el máximo de 3 movimientos
+   if (game.moves <= 3) {
+    document.getElementById("dice-roll").removeAttribute("disabled");
+  }
+
+
   if (game.turn > game.players) {
     game.turn = 1;
     game.round++;
@@ -213,9 +220,9 @@ const changePlayerTurn = () => {
   }
 
   //deshabilitar el boton de volver atrás cuando se empieza el turno
-  document.getElementById("btn-g2-back").setAttribute("disabled", "disabled");
+  //document.getElementById("btn-g2-back").setAttribute("disabled", "disabled");
 
-  document.getElementById("dice-roll").removeAttribute("disabled");
+  //document.getElementById("dice-roll").removeAttribute("disabled");
   drawDices();
   drawState();
 }
@@ -242,9 +249,46 @@ const gameOver = () => {
       winner = i;
     }
   }
-  showModal(`J${winner} won with ${winningScore} points`); 
-  document.getElementById("btn-g2-back").removeAttribute("disabled");
+  document.getElementById("btn-g2-back").removeAttribute("disabled");//se habilita el boton
+  showModal(`J${winner} ganó con ${winningScore} puntos`); 
 }
+
+
+
+const showGeneralaWarningModal = () => {
+  const warningModal = document.getElementById("warning-modal"); 
+  const warningMessage = document.getElementById("warning-message");
+  const modalConfirmDoubleBtn = document.getElementById("modal-confirm-double-btn");
+  const modalCancelBtn = document.getElementById("modal-cancel-btn");
+
+  //mnsaje de advertencia en el modal
+  warningMessage.innerText = "No se puede tachar la Generala hasta tener tachada la Doble. ¿Quieres tachar la Generala Doble?";
+
+  //modal display flex
+  warningModal.style.display = "flex";
+
+  //cuando confirma tacha la grala doble
+  modalConfirmDoubleBtn.onclick = () => {
+    game.scores[game.turn - 1][GENERA_DOUBLE_INDEX] = "X"; //tacha la doble
+    drawScores(); //redibuja la tabla con los puntajes actualizados
+    warningModal.style.display = "none"; //cierra el modal
+  };
+
+  //cuando cancela
+  modalCancelBtn.onclick = () => {
+    warningModal.style.display = "none"; //cierra el modal
+  };
+
+  //cierra el modal si hace click fuera del modal
+  window.onclick = (event) => {
+    if (event.target === warningModal) {
+      warningModal.style.display = "none";
+    }
+  };
+};
+
+
+
 
 
 const showConfirmModal = (gameIndex) => {
