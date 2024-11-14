@@ -40,43 +40,58 @@ const initGame = () => { //funcion para el click en los dados
 
 const drawScores = () => {
   // encabezado tabla
-  const contHeader = document.querySelector("#g2 .scores table thead tr"); //se lee desde tr
-  contHeader.innerHTML = null;//se ingresa todo vacio para que despues se llene
+  const contHeader = document.querySelector("#g2 .scores table thead tr");
+  contHeader.innerHTML = null;
   const cellGame = document.createElement("th");
-  cellGame.innerHTML = "Juego";//le pone juego a la tabla
-  contHeader.appendChild(cellGame);//le agrega juego al th (cabeza de la tabla) de la tabla
+  cellGame.innerHTML = "Juego";
+  contHeader.appendChild(cellGame);
+
   for (let i = 0; i < game.players; i++) { 
-    const cellPlayerName = document.createElement("th"); //el th crea dos elementos 
-    cellPlayerName.innerHTML = `J${i + 1}`; // con el inner html le agrego el jugador al th (fila)
-    contHeader.appendChild(cellPlayerName);//le agrega a contheader la fila que cree para cada jugador
+    const cellPlayerName = document.createElement("th");
+    cellPlayerName.innerHTML = `J${i + 1}`;
+    contHeader.appendChild(cellPlayerName);
   }
 
   // juegos
-  const contGames = document.querySelector("#g2 .scores table tbody"); //lo mismo de recien pero para los juegos
-  contGames.innerHTML = null; //empieza vacio
-  for (let i = 0; i < 11; i++) { //recorre 11 posiciones, las de los juegos
-    const contGame = document.createElement("tr"); //crea una fila
-    const cellGameName = document.createElement("td"); //crea una celda
-    cellGameName.innerHTML = getGameName(i); //crea las celdas y filas con el for
-    contGame.appendChild(cellGameName); // le agrego la celda  a la fila
-    for (let p = 0; p < game.players; p++) { // lo mismo pero para el score
-      const cellPlayerScore = document.createElement("td"); //creo una celda
-      cellPlayerScore.innerHTML = game.scores[p][i]; //game.scores dentro de la posicion p en la posicion i (pone una celda dentro de una fila)
-      contGame.appendChild(cellPlayerScore); //agrega el score al contgame
+  const contGames = document.querySelector("#g2 .scores table tbody");
+  contGames.innerHTML = null;
+  for (let i = 0; i < 11; i++) {
+    const contGame = document.createElement("tr");
+    const cellGameName = document.createElement("td");
+    cellGameName.innerHTML = getGameName(i);
+    contGame.appendChild(cellGameName);
+
+    for (let p = 0; p < game.players; p++) {
+      const cellPlayerScore = document.createElement("td");
+      cellPlayerScore.innerHTML = game.scores[p][i];
+      contGame.appendChild(cellPlayerScore);
     }
-    contGames.appendChild(contGame); //se agrego el contGame al contGames
+
+    contGames.appendChild(contGame);
+
     contGame.addEventListener("click", () => {
-      if (game.dices.some(dice => dice === 0)) { // si todavia no tire nada
-          return; // ignoro el click
+      if (game.dices.some(dice => dice === 0)) { // si todavia no tiro nada
+        return; // ignoro el click
       }
-     // console.info(`Attempt to score on game ${getGameName(i)}`);
-    
-      if (game.scores[game.turn - 1][i] !== " ") { //si ya esta anotado
-        showModal("Este puntaje fue anotado"); //muestra el modal diciendo que ya esta anotado
+      
+      //verifica si ya esta anotado
+      if (game.scores[game.turn - 1][i] !== " ") {
+        showModal("Este puntaje fue anotado");
         return;
       } else {
-            //si no se anoto, muestra el modal de confirmacion
-      showConfirmModal(i); 
+        //calcula el puntaje para esta posicion
+        const score = calculateScore(i);
+      
+        if (score === 0) {
+          //si el puntaje es 0, muestra el modal de confirmacion para tachar
+          showConfirmModal(i);
+        } else {
+          //si hay puntaje, se asigna directamente y actualiza
+          game.scores[game.turn - 1][i] = score;
+          game.scores[game.turn - 1][11] += score;
+          drawScores();
+          changePlayerTurn();
+        }
       }
     });
   }
@@ -86,13 +101,14 @@ const drawScores = () => {
   const cellTotalName = document.createElement("td");
   cellTotalName.innerHTML = "Total";
   contTotal.appendChild(cellTotalName);
+
   for (let p = 0; p < game.players; p++) {
     const cellPlayerTotal = document.createElement("td");
     cellPlayerTotal.innerHTML = game.scores[p][11];
     contTotal.appendChild(cellPlayerTotal);
   }
   contGames.appendChild(contTotal);
-}
+};
 
 const isGameMatch = regex => { //expresion regular como parametro
   return game.dices.slice().sort((d1, d2) => d1 - d2).join("").match(regex) !== null; //game.dices array //en d1 y d2 ordena de menor a mayor, 
