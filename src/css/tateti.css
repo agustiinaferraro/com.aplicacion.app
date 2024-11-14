@@ -1,87 +1,134 @@
-#g1 .montserrat-uniquifier {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
+#g1 {
+      text-align: center;  /*centra el texto de los elementos dentro de #g1 */
+    }
+    
+    #g1 #estado {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
+/*icono back*/
+#btn-g1-back {
+  font-size: 3rem;
+  color: black;
+  background: none;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  margin-left: 6rem;
+  margin-top: 1rem;
 }
 
-#g1 #estado {
-      text-align: center; /*centra el contenido del parrafo */
-      font-size: 1.5em; 
-      margin: 20px 0; 
-  }
-
-#g1 #botonReiniciar {
-      display: block; /* asegura que el boton se comporte como un bloque para que el margin funcione */
-      margin: 20px auto; /*centra el botón horizontalmente */
-      border-radius: 10px;
-      padding: 15px;
-      background-color: #6693bf;
-      color: aliceblue;
-      font-size: 1em;
-      box-shadow: -3px -3px 5px rgb(118, 118, 118); /*sombra a la izquierda y arriba */
+#btn-g1-back:disabled {
+  cursor: not-allowed; /* mouse deshabilitado */
+  opacity: 0.5; /*reduce la opacidad */
+}
+    
+    /*desactiva el icono una vez que empieza el juego */
+    .game-started #btn-back {
+      pointer-events: none; /*deshabilita los clicks en el icono */
+      opacity: 0.5; /*baja la opacidad para mostrar que esta desactivado */
+    }
+    
+    #tateti {
+      font-size: 2rem;
+    }
+    
+    /* boton habilitado */
+    #botonReiniciar {
+      background-color: #5A9133;
+      color: white;  
       border: none;
-  }
-  
-#g1 table, button {
-    margin: 10px auto; /*centra la tabla y el boton */
-}
-  
-#g1 h2 {
-      text-align: center;
-      font-size: 3em;
-      padding: 0;
-}
-  
-#g1 table, td {
-      width: 30%;
-      text-align: center;
-      border-radius: 20px;
-      padding: 1em 
-}
-  
-#g1 button:hover {
-      background-color: #496683;
-      color: rgb(255, 255, 255);
-}
-  
-#g1 td {
-      background-color: rgba(57, 7, 75, 0.4); /*fondo opacidad */
-      height: 50px;
-      box-shadow: -5px -5px 5px rgb(58, 58, 58); /* sombra hacia la izquierda y arriba */
-      justify-content: space-between;
-      border-collapse: separate;
-      border-spacing: 10px 10px 10px 10px;
-      font-size: 2em;
-}
-  
-#g1 .desactivado{
-      cursor: not-allowed; /*cambia el mouse cuando pasa por una celda que ya tiene contenido */
-      background-color: #d6d6d6;
+      padding: 10px 20px;  /*espaciado interno */
+      text-align: center;  /*centrado*/
+      text-decoration: none; /*sin subrayado */
+      display: inline-block;  /*aparece como un boton en linea*/
+      font-size: 16px; 
+      cursor: pointer;  /*muestra el cursor de mano cuando se pasa por encima */
+      border-radius: 5px; 
+      margin-top: 10px;  /*margen superior para separar el boton */
+    }
+    
+    /*boton deshabilitado */
+    #botonReiniciar:disabled {
+      background-color: #d3d3d3;
+      color: #a0a0a0;  
+      cursor: not-allowed;  
+    }
+    
+    /*tabla y celdas */
+    #g1 table {
+      width: 400px;  /*ancho*/
+      height: 300px; /*altura */
+      margin: 10px auto;  /*centra la tabla */
+      table-layout: fixed;  /*tamaño fijo */
+      border-spacing: 10px;  /*espacio entre las celdas */
+      border-collapse: separate;  /*para que las celdas tengan espacio */
+    }
+    
+    #g1 td {
+      width: 33.33%;  /*ancho fijo a cada celda*/
+      height: 80px;  /*altura de las celdas */
+      background-color: rgba(240, 129, 19, 0.5);  /*color en formato rgba con opacidad de 0.5 */
+      text-align: center;  /*centra el contenido dentro de las celdas */
+      font-size: 3em; 
+      box-shadow: -5px -5px 5px rgb(93, 93, 93);  /* sombra hacia la izquierda y arriba */
+      padding: 10px;  /*espaciado interno de las celdas */
+      border-radius: 5px;  
+      overflow: hidden;  /*oculta cualquier contenido que se desborde */
+    }
+    
+    #g1 td:not(.desactivado) {
+      background-color: rgba(240, 129, 19, 0.6);  /* la opacidad del color */
+    }
+    
+    #g1 .desactivado {
+      cursor: not-allowed;  /*cambia el mouse cuando pasa por una celda que ya tiene contenido */
       font-weight: bold;
-  
-}
-  
-#g1 .celda:hover{
+    }
+    
+    #g1 .desactivado.corazon {
+      background-color: #aa624e;  /*celdas de corazon desactivadas */
+    }
+    
+    #g1 .desactivado.estrella {
+      background-color: #b9793a;  /*celdas de estrella desactivadas */
+    }
+    
+    #g1 .celda:hover {
       background-color: #6693bf;
-}
-  
-#g1 .desactivado:hover{
+    }
+    
+    /*celdas desactivadas al hacer hover */
+    #g1 .desactivado:hover {
       background-color: #b1b1b1;
       color: #787878;
-}
-  
-#g1 button:disabled {
-      background-color: rgb(160, 160, 160);
-      color: #c5c5c5;
-      border: none;
-      cursor: not-allowed; 
-}
-
-.celda.corazon {
-      background-color: #ffcccc; /*color para corazones*/
-  }
-  
-  .celda.estrella {
-      background-color: #cce5ff; /*color para estrellas */
-  }
+    }
+    
+    .celda.corazon {
+      background-color: #E94A20; /*color corazones */
+    }
+    
+    .celda.estrella {
+      background-color: #F08113; /*color estrellas */
+    }
+    
+    /*Media query para pantallas chicas */
+    @media (max-width: 600px) {
+      #g1 table {
+        width: 90%;  /*en pantallas chicas la tabla ocupará un 90% del ancho */
+      }
+    
+      #g1 td {
+        font-size: 2em;  /* reduce el tamaño de la tipografia del boton en pantallas mas chicas*/
+        height: 60px; /* reduce la altura de las celdas en pantallas chicas */
+      }
+    
+      #botonReiniciar {
+        font-size: 14px;  /*reduce el tamaño de la tipografia del boton en pantallas mas chicas */
+      }
+    }
+    

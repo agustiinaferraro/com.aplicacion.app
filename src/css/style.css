@@ -1,105 +1,111 @@
-html,
-body {
+html, body {
   padding: 0;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  background: #F9E7D2;
 }
 
-#main{
-  width: 95%;
-  margin: 0 auto;
-
+#main {
   display: flex;
+  justify-content: center;
   align-items: center;
-
   flex-direction: column;
   gap: 1rem;
+  background: #F9E7D2;
+  width: 100%;
+  max-width: 400px; 
+  padding: 1rem; 
+}
 
-  background: linear-gradient(rgb(94, 57, 153), rgb(51, 20, 129));  
+#mygames {
+  text-align: center;
+  font-size: 2rem; 
+  font-weight: bold;
+  color: #262A22;
+  margin-bottom: 1.5rem; 
 }
 
 #main > button {
   display: block;
-  padding: 2rem;
-  border-radius: 10px;
-  font-size: 1em;
-  box-shadow: -3px -3px 5px rgb(24, 24, 24); /* Sombra a la izquierda y arriba */
+  width: 100%; /* botones ocupan el 100% del contenedor */
+  max-width: 300px; 
+  padding: 2.5rem; 
+  border-radius: 8px;
+  margin-bottom: 1rem; /*margen entre botones */
+  font-size: 1.8rem; 
+  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.2); /*sombra suave */
   border: none;
-  color: aliceblue;
-  font-weight: bold;
+  color: rgb(241, 241, 241);
+  transition: all 0.3s ease;
+}
+
+#main > button:hover {
+  color: rgb(255, 255, 255);
+  transform: scale(1.05); /*se agranda */
+  box-shadow: -2px -2px 8px rgba(0, 0, 0, 0.3); /*sombra fuerte hover */
 }
 
 .nodisp {
   display: none !important;
 }
 
-#g1 {
-  background: linear-gradient(blue, pink);  
-  color: white;
+#g1, #g2, #g3 {
+  background: #F9E7D2;
+  color: #262A22;
 }
 
-#g2 {
-  background-color: rgb(5, 89, 14);
+#btn-g1 {
+  background-color: #F08113;
 }
 
-#g3 {
-  background-color: rgb(126, 128, 0);
-  color: white;
+#btn-g1:hover {
+  background-color: #a3580c;
 }
 
-#main, #perfil, .game {
-  padding: 0;
-  padding-top: env(safe-area-inset-top); /*resuelve el notch*/
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
+#btn-g2 {
+  background-color: #5A9133;
 }
 
-
-
-
-
-
-
-/* Para el div 'perfil', oculto inicialmente */
-#perfil {
-  width: 300px; /* Ancho fijo */
-  padding: 20px; /* Espacio interno */
-  margin: 0 auto; /* Centrado horizontal */
-  background-color: #651a1a; /* Fondo claro */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle relieve */
-  border-radius: 8px; /* Bordes redondeados */
+#btn-g2:hover {
+  background-color: #3e6223;
 }
 
-#btn-g1-back, #btn-g2-back, #btn-g3-back{
-  font-size: 2rem;
+#btn-g3 {
+  background-color: #E94A20;
 }
 
-#main button:hover {
-  background-color: #2a2f35;
-  color: rgb(255, 255, 255);
+#btn-g3:hover {
+  background-color: #a6381a;
 }
 
-#btn-g1{
-  background-color: #a61973;
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+  #mygames {
+    font-size: 1.8rem; 
+    margin-bottom: 1.5rem;
+  }
+
+  #main > button {
+    padding: 2rem; 
+    font-size: 1.6rem; 
+    max-width: 250px;
+  }
 }
 
-#btn-g2{
-  background-color: #3115b0;
-}
+@media (max-width: 480px) {
+  #mygames {
+    font-size: 1.5rem; /*reduce el tamaño del texto */
+    margin-bottom: 1rem;
+  }
 
-#btn-g3{
-  background-color: #0a8061;
-}
-
-#mygames{
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: aliceblue;
+  #main > button {
+    padding: 1.8rem; 
+    font-size: 1.4rem; 
+    max-width: 200px; /*reduce el ancho maximo de los botones */
+  }
 }

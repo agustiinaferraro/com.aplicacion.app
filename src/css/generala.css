@@ -1,46 +1,304 @@
-.dice {
-    border: 2px solid transparent;
-    display: inline-block;
-    padding: 10px;
-    margin: 20px;
+#btn-g2-back {
+    margin-top: 15px;
+    font-size: 3rem; /* tamaño del icono back*/
+    color: black; 
+    background: none; /*sin fondo */
+    cursor: pointer; /*indica que es clickeable */
+    border: none;
+    transition: opacity 0.3s ease; /*transicion suave para la opacidad */
 }
 
-.dice.selected {
-    border: 2px solid red;
+#btn-g2-back:disabled {
+    opacity: 0.5; 
+    cursor: not-allowed; /*cursor no clickeable */
 }
 
-.dice.selected {
-    border: 2px solid red;
+.game-cont {
+    background-color: #F9E7D2;
+    font-family: Arial, sans-serif;
+    width: 85vw;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.5vh 0; /*padding superior e inferior */
+    box-sizing: border-box;
 }
 
-#generala-player,
-#generala-moves {
-    font-weight: bolder;
-}
-
-#g2 .scores {
-    margin: 1rem;
-    font-size: 1.25rem;
-}
-
-#g2 .scores table {
-    border-collapse: collapse;
-}
-
-#g2 .scores th, #g2 .scores td {
-    padding: 0.25rem;
-    min-width: 4rem;
-
+.text-center {
     text-align: center;
-
-    border: 1px solid white;
+    font-size: 2rem;
 }
 
-#g2 .scores table tbody tr {
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 5px; 
+    margin-bottom: 10px; 
+}
+
+/* boton de lanzamiento de dados */
+#dice-roll {
+    margin-top: 5px; 
+    background-color: #5A9133; 
+    color: white; 
+    font-size: 1rem; 
+    padding: 10px 30px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; /*cambia el cursor cuando pasa sobre el boton */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /*sombra suave */
+    transition: background-color 0.3s, transform 0.2s; /*transiciones suaves */
+    margin-bottom: 5px; 
+}
+
+#dice-roll:disabled {
+    background-color: #ccc; 
+    cursor: not-allowed; 
+    opacity: 0.6; /*hace que el boton se vea mas tenue */
+}
+
+#dice-roll:hover {
+    background-color: #3b5f21; 
+    transform: scale(1.05); /*hace que el boton crezca un poco */
+}
+
+/* cuando se hace click */
+#dice-roll:active {
+    background-color: #263c16; 
+    transform: scale(0.98); /*se achica */
+}
+
+.game-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem; 
+    margin-bottom: 5px; 
+}
+
+/*contenedor de dados centrado */
+.dice-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 0.5vh 0; /*padding alrededor */
+    width: 100%;
+    max-width: 85vw;
+}
+
+/*dados*/
+.dice {
+    gap: 100x; /*separacion entre los dados */
+    margin: 10px;
+    padding: 10px;
+    border: 30px solid #dedede; 
+    display: inline-block;
+    width: 25px; /*tamaño de los dados */
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; 
+    border-radius: 8px; 
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5); /*sombra */
+    transition: border 0.3s ease, transform 0.2s ease; /*transicion para selección */
     cursor: pointer;
 }
 
+
+.dice:hover {
+    background-color: #a43617; 
+    color: white;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5); /* Sombra mas fuerte */
+    transform: scale(1.05); /* se agranda */
+}
+
+/*dado seleccionado */
+.dice.selected {
+    gap: 60x; /*Separacion entre los dados */
+    transform: scale(1.1); /* se agranda*/
+}
+
+/*tabla de puntajes */
+#g2 .scores {
+    margin: 1vh 0;
+    font-size: 0.6rem; 
+}
+
+/*estilo de la tabla y celdas */
+#g2 .scores table {
+    border-collapse: collapse;
+    width: 50%;
+    table-layout: fixed; /*hace que las celdas no se expandan demasiado */
+    margin: 0 auto; /* centra la tabla */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /*sombra alrededor de la tabla */
+    border-radius: 8px; 
+}
+
+/*header y celdas de la tabla */
+#g2 .scores th, #g2 .scores td {
+    padding: 5px;
+    width: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    color: #262A22;
+    background-color: #ecf0f1;
+    font-size: 0.7rem;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease; /*transicion de color */
+}
+
+/*cuando el mouse pasa sobre una celda */
+#g2 .scores th:hover, #g2 .scores td:hover {
+    background-color: #262A22;
+    color: white;
+    cursor: pointer;
+}
+
+#g2 .scores table tbody tr:hover {
+    background-color: #262A22; /* Fondo al pasar sobre una fila */
+    cursor: pointer;
+}
+
+/* ultima fila */
 #g2 .scores table tbody tr:last-of-type td {
     font-weight: bold;
-    cursor: default;
+    background-color: #F08113; /* Fondo para la ultima fila */
+    color: #FFF8EF; 
 }
+
+.modal {
+    display: none; /*inicialmente oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /*fondo oscuro semitransparente */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  #modal-message {
+    margin-bottom: 20px; /*espacio entre el mensaje y el boton */
+    font-size: 16px;
+  }
+  
+  #modal-accept-btn {
+    background-color: #4CAF50;
+    color: white; 
+    padding: 10px 20px; /*espaciado alrededor del texto */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s; /*transicion para el hover */
+  }
+  
+  #modal-accept-btn:hover {
+    background-color: #45a049;
+  }
+  
+  #modal-accept-btn:focus {
+    outline: none; /* saca el borde azul */
+  }
+  
+
+  #confirm-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* fondo semitransparente */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #confirm-modal > div {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  #modal-confirm-btn,
+  #modal-cancel-btn {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  #modal-cancel-btn {
+    background-color: #dc3545;
+  }
+  
+  #generala-doble-modal {
+    display: none; /*se oculta por defecto */
+    position: fixed; /*fija la posición del modal */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /*fondo translucido */
+    z-index: 1000; /* modal por encima de otros elementos */
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  #generala-doble-modal .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  #generala-doble-modal .modal-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  #generala-doble-modal .modal-content button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  #generala-doble-modal .modal-content .confirm-doble-btn {
+    background-color: #4CAF50; /*color para el boton de confirmacion */
+    color: white;
+  }
+  
+  #generala-doble-modal .modal-content .cancel-doble-btn {
+    background-color: #f44336; /*color para el boton de cancelar */
+    color: white;
+  }
+  
+  #generala-doble-modal .modal-content button:hover {
+    opacity: 0.8;
+  }
+  

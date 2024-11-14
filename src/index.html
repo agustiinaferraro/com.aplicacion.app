@@ -31,8 +31,8 @@
     </div>
 
     <div id="g1" class="game nodisp">
-        <button id="btn-g1-back">🔙</button>
-        <h2>Ta Te Ti</h2>
+        <button id="btn-g1-back">&#x21A9;</button>
+        <h2 id="tateti">Ta Te Ti</h2>
             <table>
                 <tr>
                     <td class="celda" data-index="0" data-type="corazon"></td>
@@ -58,7 +58,7 @@
 
     <div id="g2" class="game nodisp">
         <div class="game-cont">
-            <button id="btn-g2-back">🔙</button>
+            <button id="btn-g2-back">&#x21A9;</button>
             <h2 class="text-center">Generala</h2>
         
             <div class="dice-container">
@@ -83,9 +83,49 @@
                 </div>
             </div>  
         </div>
-    
+       <!-- Modal -->
+<div id="alert-modal" class="modal">
+    <div class="modal-content">
+      <p id="modal-message">Este puntaje ya fue anotado</p>
+      <button id="modal-accept-btn">Aceptar</button> <!-- Botón con texto "Aceptar" -->
+    </div>
+  </div>
+
+  <!-- Modal de confirmación para tachar -->
+<div id="confirm-modal" class="modal">
+    <div class="modal-content">
+      <p id="confirm-message">¿Estás seguro de tachar este juego?</p>
+      <button id="modal-confirm-btn">Sí</button>
+      <button id="modal-cancel-btn">No</button>
+    </div>
+  </div>
+  
+
+ <!-- Modal de Confirmación para Tachado de Generala Doble -->
+<div id="generala-doble-modal">
+    <div class="modal-content">
+      <p id="generala-doble-message">No se puede tachar la generala si no está tachada la generala doble. ¿Quieres tachar la generala doble?</p>
+      <button id="generala-doble-confirm-btn" class="confirm-doble-btn">Tachar Generala Doble</button>
+      <button id="generala-doble-cancel-btn" class="cancel-doble-btn">Cancelar</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div id="g3" class="game nodisp">
-        <button id="btn-g3-back">🔙</button>
+        <button id="btn-g3-back">&#x21A9;</button>
         <h2>Game 3</h2>
         <p>El juego 3 acá...</p>
     </div>
