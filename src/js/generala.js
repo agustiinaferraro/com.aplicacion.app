@@ -86,7 +86,7 @@ const drawScores = () => {
           //si el puntaje es 0, muestra el modal de confirmacion para tachar
           showConfirmModal(i);
         } else {
-          //si hay puntaje, se asigna directamente y actualiza
+          //si hay puntaje, se directamente y actualizar
           game.scores[game.turn - 1][i] = score;
           game.scores[game.turn - 1][11] += score;
           drawScores();
@@ -254,7 +254,7 @@ const showConfirmModal = (gameIndex) => {
   const modalCancelBtn = document.getElementById("modal-cancel-btn");
 
   //cambia el mensaje del modal segun el juego
-  confirmMessage.innerText = `¿Estás seguro de tachar o asignar el puntaje en el juego ${getGameName(gameIndex)}?`;
+  confirmMessage.innerText = `¿Estás seguro de tachar el puntaje en el juego ${getGameName(gameIndex)}?`;
 
   confirmModal.style.display = "flex";  // muestra el modal
 
