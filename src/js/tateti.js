@@ -60,7 +60,7 @@ function validarResultado() { //funcion para verificar el resultado del juego
 
         // verifica si todos los indices tienen el mismo simbolo
         if (estadoJuego[a] && estadoJuego[a] === estadoJuego[b] && estadoJuego[a] === estadoJuego[c]) {
-            const colorGanador = jugadorActual === '♥️' ? '#E94A20' : '#F08113';
+            const colorGanador = jugadorActual === '♥️' ? '#556B2F' : '#F08113';
 
             //resalta las celdas ganadoras
             celdas[a].style.backgroundColor = colorGanador;
