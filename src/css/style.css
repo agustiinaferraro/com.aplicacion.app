@@ -24,20 +24,18 @@ html, body {
 
 #mygames {
   text-align: center;
-  font-size: 2rem; 
+  font-size: 3rem; 
   font-weight: bold;
   color: #262A22;
   margin-bottom: 1.5rem; 
 }
 
 #main > button {
+  width: 100%;
+  font-size: 1.5rem;
   display: block;
-  width: 100%; /* botones ocupan el 100% del contenedor */
-  max-width: 300px; 
-  padding: 2.5rem; 
+  padding: 3rem; 
   border-radius: 8px;
-  margin-bottom: 1rem; /*margen entre botones */
-  font-size: 1.8rem; 
   box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.2); /*sombra suave */
   border: none;
   color: rgb(241, 241, 241);
@@ -46,7 +44,7 @@ html, body {
 
 #main > button:hover {
   color: rgb(255, 255, 255);
-  transform: scale(1.05); /*se agranda */
+  transform: scale(1.09); /*se agranda */
   box-shadow: -2px -2px 8px rgba(0, 0, 0, 0.3); /*sombra fuerte hover */
 }
 
@@ -83,29 +81,16 @@ html, body {
   background-color: #a6381a;
 }
 
-/* Media Queries para responsividad */
-@media (max-width: 768px) {
-  #mygames {
-    font-size: 1.8rem; 
-    margin-bottom: 1.5rem;
-  }
-
-  #main > button {
-    padding: 2rem; 
-    font-size: 1.6rem; 
-    max-width: 250px;
-  }
-}
-
-@media (max-width: 480px) {
-  #mygames {
-    font-size: 1.5rem; /*reduce el tamaño del texto */
-    margin-bottom: 1rem;
-  }
-
-  #main > button {
-    padding: 1.8rem; 
-    font-size: 1.4rem; 
-    max-width: 200px; /*reduce el ancho maximo de los botones */
+@media screen and (min-width: 1024px) {
+  #main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; /* Cambiado de column a row */
+    gap: 1rem;
+    background: #F9E7D2;
+    width: 100%;
+    max-width: 800px; /* Ajustado para que haya más espacio horizontal */
+    padding: 1rem;
   }
 }
