@@ -94,3 +94,19 @@ html, body {
     padding: 1rem;
   }
 }
+
+@media screen and (min-width: 480px) and (max-width: 1024px) and (orientation: landscape) {
+
+  #main {
+    flex-direction: row;
+    gap: 1rem;
+    max-width: 100%;
+  }
+
+  #main > button {
+    flex: 1; /* Para que se repartan el espacio */
+    padding: 2rem;
+    font-size: 1.2rem;
+  }
+
+}
