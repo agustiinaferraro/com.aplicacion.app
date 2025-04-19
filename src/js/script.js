@@ -5,6 +5,14 @@ function hideAllSections() {
 
 function showSection(sectionId) {
   document.getElementById(sectionId).classList.remove("nodisp"); //hace lo contrario a la funcion hideAllSections, le saca la clase nodisp a las secciones
+
+  // cambia el tamaño del titulo "My games" dependiendo el juego
+  const title = document.getElementById("mygames");
+  if (sectionId === "main") {
+    title.classList.remove("small"); // grande en la pantalla principal
+  } else {
+    title.classList.add("small"); // chico en los juegos
+  }
 }
 
 function setupButtons() { //cada vez que se toque un boton (un juego), se oculta todo y se muestra unicamente el juego que se selecciono

@@ -22,19 +22,16 @@ html, body {
   padding: 1rem; 
 }
 
-#main #mygames {
+#mygames {
   font-size: 3rem;
   text-align: center;
   font-weight: bold;
   color: #262A22;
+  transition: font-size 0.3s ease;
 }
 
-/* Cuando está en alguna pantalla de juego */
-#g1 #mygames,
-#g2 #mygames,
-#g3 #mygames {
+#mygames.small {
   font-size: 1.5rem;
-  font-weight: 10px;
 }
 
 #main > button {
