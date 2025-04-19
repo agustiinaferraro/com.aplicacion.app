@@ -70,11 +70,17 @@
         color: #a0a0a0;  
         cursor: not-allowed;  
       }
+
+      .g1 {
+        margin-bottom: 5%;
+        margin-left: 5%;
+        margin-right: 5%;
+      }
       
       #g1 td {
         font-size: 2rem;  /* reduce el tamaño de la tipografia del boton en pantallas mas chicas*/
         width: 33.33%;  /*ancho fijo a cada celda*/
-        height: 20vw; /* Altura proporcional al ancho */
+        height: 10vh; /* Altura proporcional al ancho */
         background-color: rgba(240, 129, 19, 0.5);  /*color en formato rgba con opacidad de 0.5 */
         text-align: center;  /*centra el contenido dentro de las celdas */
         box-shadow: -5px -5px 5px rgb(93, 93, 93);  /* sombra hacia la izquierda y arriba */
@@ -139,4 +145,32 @@
       }
       
     }
+
+    @media screen and (min-width: 480px) and (max-width: 1024px) and (orientation: landscape) {
+      
+      #g1 {
+        display: flex;
+        flex-direction: row; 
+      }
+      
+      #g1 td {
+        height: 10vw !important;
+        font-size: 1.2rem !important;
+        padding: 5px !important;
+        max-height: 50px !important;
+        max-width: 60px !important;
+      }
+
+      #tateti{
+        width: 35%;
+      }
+
+      .botonyturno {
+        width: 35%;
+      }
     
+      #g1 table {
+        width: 35%;
+        border-spacing: 1vw;
+      }
+    }
