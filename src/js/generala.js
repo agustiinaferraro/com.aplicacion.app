@@ -1,4 +1,4 @@
-const DICE_SIZE = 100;
+const DICE_SIZE = 55;
 const DOT_RADIUS = 0.1 * DICE_SIZE;
 const AT_QUARTER = 0.25 * DICE_SIZE;
 const AT_HALF = 0.5 * DICE_SIZE;

@@ -60,12 +60,15 @@ function validarResultado() { //funcion para verificar el resultado del juego
 
         // verifica si todos los indices tienen el mismo simbolo
         if (estadoJuego[a] && estadoJuego[a] === estadoJuego[b] && estadoJuego[a] === estadoJuego[c]) {
-            const colorGanador = jugadorActual === '♥️' ? '#556B2F' : '#F08113';
+            const colorGanador = jugadorActual === '♥️'
+            ? 'linear-gradient(to top, #556B2F, #6B8E23)'  // para cora
+            : 'linear-gradient(to top, #F08113, #f9a345)'; // para estrella
 
             //resalta las celdas ganadoras
-            celdas[a].style.backgroundColor = colorGanador;
-            celdas[b].style.backgroundColor = colorGanador;
-            celdas[c].style.backgroundColor = colorGanador;
+            celdas[a].style.background = colorGanador;
+            celdas[b].style.background = colorGanador;
+            celdas[c].style.background = colorGanador;
+
             estadoDisplay.textContent = `¡Ganador: ${jugadorActual}!`; // muestra el ganador
             terminarJuego(); // termina el juego
             return; // sale de la funcion
@@ -115,7 +118,7 @@ function reiniciarJuego() {
     celdas.forEach(function(celda) {
         celda.textContent = ""; //limpia el contenido de la celda
         celda.classList.remove('desactivado', 'corazon', 'estrella'); //reactiva las celdas
-        celda.style.backgroundColor = ''; // saca el color de fondo
+        celda.style.background = ''; // saca el color de fondo
     });
 
     //vuelve a asignar el evento de click en las celdas

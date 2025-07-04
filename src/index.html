@@ -20,19 +20,20 @@
     <link rel="stylesheet" href="./css/style.css" /> 
     <link rel="stylesheet" href="./css/tateti.css" /> 
     <link rel="stylesheet" href="./css/generala.css" /> 
+    <link rel="stylesheet" href="./css/trivia.css" />
 
 </head>
 <body>
-    <h1 id="mygames">My games</h1>
+    <h1 id="mygames">MY GAMES</h1>
     <div id="main">
-        <button id="btn-g1">Ta Te Ti</button>
-        <button id="btn-g2">Generala</button>
-        <button id="btn-g3">Game 3</button>
+        <button id="btn-g1" class="btn-control">Ta-Te-Ti</button>
+        <button id="btn-g2" class="btn-control">Generala</button>
+        <button id="btn-g3" class="btn-control">Trivia</button>
     </div>
 
     <div id="g1" class="game nodisp">
-        <button id="btn-g1-back">&#x21A9;</button>
-        <h2 id="tateti">Ta Te Ti</h2>
+        <button id="btn-g1-back">‹</button>
+        <h2 id="tateti">Ta-Te-Ti</h2>
             
             <table>
                 <tr>
@@ -58,33 +59,91 @@
             </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Generala -->
     <div id="g2" class="game nodisp">
-        <div class="game-cont">
-            <button id="btn-g2-back">&#x21A9;</button>
-            <h2 class="text-center">Generala</h2>
-        
-            <div class="dice-container">
-                <div class="dice d0"></div>
-                <div class="dice d1"></div>
-                <div class="dice d2"></div>
-                <div class="dice d3"></div>
-                <div class="dice d4"></div>
-            </div>
-            
-                <div class="game-state">
-                    Turno de jugador: <span id="generala-player"></span>, tirada: <span id="generala-moves"></span>
-                </div>
-                <div class="controls">
-                    <button id="dice-roll">Tirar</button>
-                </div>
-                <div class="scores">
-                    <table>
-                        <thead><tr></tr></thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>  
+      <button id="btn-g2-back">‹</button>
+      <div class="text-center">Generala</div>
+
+      <div class="dados-boton">
+        <!-- Tabla de puntajes -->
+        <div class="scores">
+          <table>
+            <thead>
+              <tr>
+                <th>Categoría</th>
+                <th>Puntaje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1s</td><td></td></tr>
+              <tr><td>2s</td><td></td></tr>
+              <tr><td>3s</td><td></td></tr>
+              <tr><td>4s</td><td></td></tr>
+              <tr><td>5s</td><td></td></tr>
+              <tr><td>6s</td><td></td></tr>
+              <tr><td>Escalera</td><td></td></tr>
+              <tr><td>Full</td><td></td></tr>
+              <tr><td>Póker</td><td></td></tr>
+              <tr><td>Generala</td><td></td></tr>
+              <tr><td>Doble</td><td></td></tr>
+              <tr><td>Total</td><td>0</td></tr>
+            </tbody>
+          </table>
         </div>
+
+        <!-- Dados -->
+        <div class="dice-side">
+          <div class="dice-container">
+            <div class="dice d0"></div>
+            <div class="dice d1"></div>
+            <div class="dice d2"></div>
+            <div class="dice d3"></div>
+            <div class="dice d4"></div>
+          </div>
+        </div>
+
+        <!-- Estado y botón de tirar -->
+        <div class="controlesYmas">
+          <div class="game-state">
+            Turno de jugador: <span id="generala-player"></span>, tirada: <span id="generala-moves"></span>
+          </div>
+          <div class="controls">
+            <button id="dice-roll">Tirar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
        <!-- Modal -->
 <div id="alert-modal" class="modal">
     <div class="modal-content">
@@ -123,14 +182,19 @@
 
 
 
-
-
-    <div id="g3" class="game nodisp">
-        <button id="btn-g3-back">&#x21A9;</button>
-        <h2>Game 3</h2>
-        <p>El juego 3 acá...</p>
+    <div id="g3" class="nodisp">
+      <div class="contenido-central">
+        <button id="btn-g3-back">‹</button>
+        <h2>Trivia Bíblica</h2>
+        <h3 id="estado-trivia"></h3>
+        <div id="trivia-g3"></div>
+      <p id="versiculo" style="margin-top: 15px; font-style: italic; color: #555; max-width: 400px; margin-left:auto; margin-right:auto;"></p>
+      </div>  
     </div>
 
+
+
+    <script src="./js/trivia.js" type="module"></script>
     <script src="./js/script.js" type="module"></script> 
     <script src="./js/tateti.js" type="module"></script> 
     <script src="./js/generala.js" type="module"></script> 

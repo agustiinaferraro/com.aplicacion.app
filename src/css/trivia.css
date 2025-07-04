@@ -1,0 +1,252 @@
+/* Contenedor principal g3 */
+#g3 {
+width: 90vw;
+  height: 83vh;
+  overflow-y: auto;
+  z-index: 9998;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: transparent;
+  text-align: center;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* NO center */
+  align-items: center;
+}
+
+.contenido-central {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 70vh; /* o lo que necesites */
+}
+
+
+/* Titulos en g3 */
+#g3 h2 {
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #ddd;
+  user-select: none;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  color: #bbb;
+  text-shadow:
+  1px 1px 2px #666,
+  -1px -1px 1px #fff,
+  2px 2px 6px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Contenedor trivia */
+#trivia-g3 {
+  width: 350px;
+  /*margin: 20px auto;*/
+  font-size: 1rem;
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(to top, #222, #444);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.1),
+    0 6px 0 #000,
+    0 10px 15px rgba(0,0,0,0.6);
+  color: #ddd;
+  overflow: hidden;
+}
+
+/* Inputs nombre */
+#trivia-g3 input[type="text"],
+#trivia-g3 input[type="text"]:focus {
+ /* width: 100%;*/
+  padding: 10px 14px;
+  font-size: 1.1rem;
+  border: 2px solid #000;
+  border-radius: 8px;
+  margin: 0 auto;
+  background: linear-gradient(to top, #444, #666);
+  color: #fff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#trivia-g3 input[type="text"]:focus {
+  border-color: #60ffa2;
+}
+
+/* Estado / pregunta */
+#estado-trivia {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+/* Feedback */
+#feedback {
+  text-align: center;
+  /*font-weight: 700;*/
+  margin-top: 10px;
+  margin-bottom: 5px;
+  min-height: 70px;
+  color: white;
+}
+
+#btn-siguiente{
+background: linear-gradient(90deg, #4CAF50 0%, #81C784 100%);
+transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+  border: 1px solid #1c421e;
+  border-radius: 8px;
+  padding: 8px 16px; /* sin cambiar tamaño, solo espacio interno */
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#btn-siguiente:hover:not(:disabled) {
+  background: linear-gradient(90deg, #43a047 0%, #66bb6a 100%);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#btn-siguiente:active:not(:disabled) {
+  transform: scale(0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+#btn-siguiente:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+  box-shadow: none;
+  background: linear-gradient(135deg, #a0a0a0 0%, #c0c0c0 100%);
+  color: #666;
+  transform: none;
+  transition: background 0.3s ease;
+}
+
+#btn-siguiente:disabled:hover {
+  background: linear-gradient(135deg, #8f8f8f 0%, #a9a9a9 100%);
+}
+
+
+
+
+
+/* Versículo */
+#versiculo {
+  text-align: center;
+  font-style: italic;
+  color: #bbb;
+  margin-top: 5px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Opciones - botones de respuesta */
+.opciones-container button {width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    margin: 2px 0;
+    padding: 8px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    font-weight: 900;
+    color: #ddd;
+    background: linear-gradient(to top, #333, #555);
+    text-shadow: 1px 1px 2px #111, -1px -1px 1px #555;
+    -webkit-text-stroke: 0.5px #222;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px 0 #000, 0 1px 5px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.opciones-container button:hover {
+  background: linear-gradient(to top, #868686, #646464);
+  color: #404040;
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.4),
+    0 4px 8px rgba(0,0,0,0.4);
+  transform: scale(1.05);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.opciones-container button:active {
+  transform: scale(0.95);
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.6),
+    0 1px 2px rgba(0,0,0,0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Botón volver */
+#btn-g3-back {
+  position: fixed;
+  top: -20px;
+  left: 20px;
+  font-size: 2.5rem;
+  color: white;
+  background: none;
+  cursor: pointer;
+  border: none;
+  z-index: 9999;
+}
+
+#btn-g3-back:hover {
+  text-decoration: underline;
+}
+
+/* Títulos generales h3 */
+h3 {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #ccc;
+  font-weight: normal;
+}
+
+#btn-rejugar,
+#btn-cambiar-jugadores,
+#btn-cerrar-modal,
+#btn-siguiente-turno  {
+  background: linear-gradient(90deg, #4CAF50 0%, #81C784 100%);
+  border: 1px solid #1c421e;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#btn-rejugar:hover,
+#btn-cambiar-jugadores:hover,
+#btn-cerrar-modal:hover,
+#btn-siguiente-turno  {
+  background: linear-gradient(90deg, #388E3C 0%, #66BB6A 100%);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#btn-rejugar:active,
+#btn-cambiar-jugadores:active,
+#btn-cerrar-modal:active,
+#btn-siguiente-turno {
+  transform: scale(0.95);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Tamaño dinámico para mygames 
+#mygames.small {
+  font-size: 1.2rem;
+  transition: font-size 0.3s ease;
+}*/

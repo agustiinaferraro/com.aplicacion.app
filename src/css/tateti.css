@@ -8,21 +8,26 @@
       }
 
       #g1 #estado {
-        font-size: 1.5rem;
-        margin: 20px 0;
+        font-size: 1rem;
+        margin: 10px 0;
+        color: white;
       }
 
       #btn-g1-back {
         position: fixed;
         left: 10%; 
-        top: 3rem;  
+        top: 0rem;  
         font-size: 3rem;
-        color: black;
+        color: white;
         background: none;
         cursor: pointer;
         border: none;
         transition: opacity 0.3s ease;
-      }      
+      }   
+      
+      #btn-g1-back:hover {
+        text-decoration: underline;
+      }
 
       #btn-g1-back:disabled {
         cursor: not-allowed; /* mouse deshabilitado */
@@ -31,7 +36,7 @@
 
       #g1 table {
         width: 80%;
-        height: 100%;
+        height: 10vh;
         margin: auto; /* Solo una vez */
         table-layout: fixed;
         border-spacing: 2vw;
@@ -45,13 +50,27 @@
       }
 
       #tateti {
-        font-size: 2rem;
+        font-weight: 900;
+        font-size: 2.5rem;
+        color: #ddd;
+        user-select: none;
         width: 100%;
+        margin-bottom: 1rem;
+
+        color: #bbb;
+        text-shadow:
+          1px 1px 2px #666,
+          -1px -1px 1px #fff,
+          2px 2px 6px rgba(0,0,0,0.5);
+        letter-spacing: 2px;
+        text-transform: uppercase;
       }
+
 
        /* boton habilitado */
        #botonReiniciar {
-        background-color: #5A9133;
+        background: linear-gradient(to top, #01b443, #087405);
+      /*  background-color: #5A9133;*/
         color: white;  
         border: none;
         padding: 10px 20px;  /*espaciado interno */
@@ -66,7 +85,7 @@
       
       /*boton deshabilitado */
       #botonReiniciar:disabled {
-        background-color: #d3d3d3;
+        background: linear-gradient(to top, #959595, #606060);
         color: #a0a0a0;  
         cursor: not-allowed;  
       }
@@ -80,17 +99,34 @@
       #g1 td {
         font-size: 2rem;  /* reduce el tamaño de la tipografia del boton en pantallas mas chicas*/
         width: 33.33%;  /*ancho fijo a cada celda*/
-        height: 10vh; /* Altura proporcional al ancho */
-        background-color: rgba(240, 129, 19, 0.5);  /*color en formato rgba con opacidad de 0.5 */
+        /*height: 4vh; /* Altura proporcional al ancho */
+        height: 50px;
         text-align: center;  /*centra el contenido dentro de las celdas */
-        box-shadow: -5px -5px 5px rgb(93, 93, 93);  /* sombra hacia la izquierda y arriba */
         padding: 10px;  /*espaciado interno de las celdas */
-        border-radius: 5px;  
-        overflow: hidden;  /*oculta cualquier contenido que se desborde */        
+        overflow: hidden;  /*oculta cualquier contenido que se desborde */   
+        
+        
+        background: linear-gradient(to top, #1c1c1c, #0c0c0c);
+        border: 3px solid #000;
+        color: #ddd;
+        font-weight: 900;
+        text-shadow:
+          1px 1px 2px #111,
+          -1px -1px 1px #555;
+        -webkit-text-stroke: 0.8px #222;
+        box-shadow:
+          inset 0 2px 4px rgba(255,255,255,0.1),
+          0 6px 0 #000,
+          0 10px 15px rgba(0,0,0,0.6);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        user-select: none;
       }
 
       #g1 td:not(.desactivado) {
-        background-color: rgba(240, 129, 19, 0.6);  /* la opacidad del color */
+       /* background-color: rgba(240, 129, 19, 0.6);  /* la opacidad del color */
+        background: linear-gradient(to top, #2c2c2c, #626262);
       }
       
       #g1 .desactivado {
@@ -99,29 +135,40 @@
       }
       
       #g1 .desactivado.corazon {
-        background-color: #502e25;  /*celdas de corazon desactivadas */
+       /* background-color: #502e25;  /*celdas de corazon desactivadas */
+        background: linear-gradient(to top, #900000, #480000);
+
       }
       
       #g1 .desactivado.estrella {
-        background-color: #b9793a;  /*celdas de estrella desactivadas */
+        /*background-color: #b9793a;  /*celdas de estrella desactivadas */
+        background: linear-gradient(to top, #7e5103, #6d4100);
+
       }
       
       #g1 .celda:hover {
-        background-color: #6693bf;
+       /* background-color: #562724;*/
+        background: linear-gradient(to top, #888888, #6c6c6c);
+
       }
       
       /*celdas desactivadas al hacer hover */
       #g1 .desactivado:hover {
-        background-color: #b1b1b1;
+        /*background-color: #b1b1b1;*/
+        background: linear-gradient(to top, #545454, #535353);
+
         color: #787878;
       }
       
       .celda.corazon {
-        background-color: #5e1b09; /*color corazones */
+       /* background-color: #5e1b09; /*color corazones */
+        background: linear-gradient(to top, #880000, #6b0707);
+
       }
       
       .celda.estrella {
-        background-color: #F08113; /*color estrellas */
+      /*  background-color: #F08113; /*color estrellas */
+        background: linear-gradient(to top, #e46d0cdf, #d17504);
       }
 
     @media screen and (min-width: 1024px) {
@@ -139,9 +186,9 @@
       }
     
       #g1 td {
-        height: 6vw; /* Reduce la altura de las celdas */
+        height: 50px; /* Reduce la altura de las celdas */
         max-height: 80px; /* Límite de altura */
-        max-width: 80px; /* Límite de ancho */
+        max-width: 50px; /* Límite de ancho */
       }
       
     }

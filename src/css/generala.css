@@ -1,310 +1,416 @@
+/* Botón volver */
 #btn-g2-back {
   position: fixed;
-  left: 10%;
-  top: 3rem;
-  font-size: 3rem;
-  color: black;
+  top: -25px;
+  font-size: 2.5rem;
+  color: white;
   background: none;
   cursor: pointer;
   border: none;
-  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+#btn-g2-back:hover {
+  text-decoration: underline;
 }
 
 #btn-g2-back:disabled {
-    opacity: 0.5; 
-    cursor: not-allowed; /*cursor no clickeable */
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
+/* === CONTENEDORES PRINCIPALES === */
 .game-cont {
-    background-color: #F9E7D2;
-    font-family: Arial, sans-serif;
-    width: 85vw;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0.5vh 0; /*padding superior e inferior */
-    box-sizing: border-box;
+  background-color: #F9E7D2;
+  font-family: Arial, sans-serif;
+  max-width: 95vw;
+  margin: 0 auto;
+  padding: 0.5vh 1rem;
+  box-sizing: border-box;
 }
 
 .text-center {
-    text-align: center;
-    font-size: 2rem;
-    margin: 2%;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #bbb;
+  user-select: none;
+  width: 100%;
+  margin-bottom: 0px;
+  margin-top: 15px;
+  text-shadow:
+    1px 1px 2px #666,
+    -1px -1px 1px #fff,
+    2px 2px 6px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-
-.controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 5px; 
-    margin-bottom: 10px; 
+.dados-boton {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* align-items: flex-start;*/
+  /*gap: 1rem;*/
 }
 
-/* boton de lanzamiento de dados */
-#dice-roll {
-    margin-top: 5px; 
-    background-color: #5A9133; 
-    color: white; 
-    font-size: 1rem; 
-    padding: 10px 30px; 
-    border: none; 
-    border-radius: 4px; 
-    cursor: pointer; /*cambia el cursor cuando pasa sobre el boton */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /*sombra suave */
-    transition: background-color 0.3s, transform 0.2s; /*transiciones suaves */
-    margin-bottom: 5px; 
-}
-
-#dice-roll:disabled {
-    background-color: #ccc; 
-    cursor: not-allowed; 
-    opacity: 0.6; /*hace que el boton se vea mas tenue */
-}
-
-#dice-roll:hover {
-    background-color: #3b5f21; 
-    transform: scale(1.05); /*hace que el boton crezca un poco */
-}
-
-/* cuando se hace click */
-#dice-roll:active {
-    background-color: #263c16; 
-    transform: scale(0.98); /*se achica */
-}
-
-.game-state {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.8rem; 
-    margin-bottom: 5px; 
-}
-
-/*contenedor de dados centrado */
-.dice-container {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 0.5vh 0; /*padding alrededor */
-    width: 100%;
-    max-width: 85vw;
-    margin-bottom: 1%
-}
-
-/*dados*/
-.dice {
-    /*gap: 100x; /*separacion entre los dados */
-    margin: 9px;
-    padding: 10px;
-    border: 30px solid #dedede; 
-    display: inline-block;
-    width: 8px; /*tamaño de los dados */
-    height: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem; 
-    border-radius: 8px; 
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5); /*sombra */
-    transition: border 0.3s ease, transform 0.2s ease; /*transicion para selección */
-    cursor: pointer;
-}
-
-
-.dice:hover {
-    background-color: #a43617; 
-    color: white;
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5); /* Sombra mas fuerte */
-    transform: scale(1.05); /* se agranda */
-}
-
-/*dado seleccionado */
-.dice.selected {
-  transform: scale(1.1); /* Aumenta el tamaño del dado cuando está seleccionado */
-}
-
-/*tabla de puntajes */
+/* === TABLA DE PUNTAJES MODIFICADA === */
 #g2 .scores {
-    margin: 1vh 0;
-    font-size: 0.6rem; 
+  margin: 3vh 0;
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-/*estilo de la tabla y celdas */
 #g2 .scores table {
-    border-collapse: collapse;
-    width: 50%;
-    table-layout: fixed; /*hace que las celdas no se expandan demasiado */
-    margin: 0 auto; /* centra la tabla */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /*sombra alrededor de la tabla */
-    border-radius: 8px; 
+  border-collapse: collapse;
+  width: 50%;
+  table-layout: fixed;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: linear-gradient(to top, #222, #444);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    0 6px 0 #000,
+    0 10px 15px rgba(0, 0, 0, 0.6);
+  color: #ddd;
 }
 
-/*header y celdas de la tabla */
-#g2 .scores th, #g2 .scores td {
-    padding: 5px;
-    width: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-    color: #262A22;
-    background-color: #ecf0f1;
-    font-size: 0.7rem;
-    border-radius: 5px;
-    transition: background-color 0.2s ease, color 0.2s ease; /*transicion de color */
+#g2 .scores th,
+#g2 .scores td {
+  padding: 5px;
+  width: 10px;
+  text-align: center;
+  border: 1px solid #000;
+  color: #ddd;
+  background: linear-gradient(to top, #444, #222);
+  font-size: 0.7rem;
+  border-radius: 8px;
+  text-shadow:
+    1px 1px 2px #111,
+    -1px -1px 1px #555;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/*cuando el mouse pasa sobre una celda */
-#g2 .scores th:hover, #g2 .scores td:hover {
-    background-color: #262A22;
-    color: white;
-    cursor: pointer;
+#g2 .scores th:hover,
+#g2 .scores td:hover {
+  background-color: #262A22;
+  color: white;
+  cursor: pointer;
+  text-shadow:
+    2px 2px 4px #000,
+    -2px -2px 4px #888;
 }
 
 #g2 .scores table tbody tr:hover {
-    background-color: #262A22; /* Fondo al pasar sobre una fila */
-    cursor: pointer;
+  background-color: #262A22;
+  cursor: pointer;
 }
 
-/* ultima fila */
 #g2 .scores table tbody tr:last-of-type td {
-    font-weight: bold;
-    background-color: #F08113; /* Fondo para la ultima fila */
-    color: #FFF8EF; 
+  font-weight: bold;
+  background: linear-gradient(135deg, #F08113 0%, #f2a14a 50%, #ffe0c0 100%);
+  color: #FFF8EF;
+  text-shadow: none;
 }
 
-.modal {
-    display: none; /*inicialmente oculto */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /*fondo oscuro semitransparente */
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-  }
-  
-  #modal-message {
-    margin-bottom: 20px; /*espacio entre el mensaje y el boton */
-    font-size: 16px;
-  }
-  
-  #modal-accept-btn {
-    background-color: #4CAF50;
-    color: white; 
-    padding: 10px 20px; /*espaciado alrededor del texto */
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s; /*transicion para el hover */
-  }
-  
-  #modal-accept-btn:hover {
-    background-color: #45a049;
-  }
-  
-  #modal-accept-btn:focus {
-    outline: none; /* saca el borde azul */
-  }
-  
+/* === DADOS === */
+.dice-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-  #confirm-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* fondo semitransparente */
+.dice-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.dice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 3px solid #dedede;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.dice:hover {
+  background-color: #a43617;
+  color: white;
+  transform: scale(1.05);
+}
+
+.dice.selected {
+  transform: scale(1.1);
+}
+
+/* === ESTADO DE JUGADA === */
+.game-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: white;
+}
+
+/* === BOTÓN DE TIRAR === */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 5px 0 10px;
+}
+
+#dice-roll {
+  background-color: #5A9133;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.opciones-container, button {
+  border-radius: 10px;
+  /*padding: 20px;*/
+  /* background-color: #8bd7fd;*/
+}
+
+#dice-roll:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#dice-roll:hover {
+  background-color: #3b5f21;
+  transform: scale(1.05);
+}
+
+#dice-roll:active {
+  background-color: #263c16;
+  transform: scale(0.98);
+}
+
+/* === MODALES === */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#modal-message {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+#modal-accept-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#modal-accept-btn:hover {
+  background: linear-gradient(135deg, #45a049 0%, #66bb6a 50%, #b2f2bd 100%);
+}
+
+#modal-accept-btn:focus {
+  outline: none;
+}
+
+#confirm-modal,
+#warning-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+#confirm-modal > div,
+#warning-modal > div {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+}
+
+#modal-confirm-btn,
+#modal-cancel-btn,
+#modal-confirm-double-btn {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #007bff 0%, #339dff 50%, #a3d4ff 100%);
+  color: white;
+}
+
+#modal-cancel-btn,
+#warning-modal .cancel-doble-btn {
+  background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 50%, #ffecec 100%);
+}
+
+/* === RESPONSIVE === */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+
+  #g2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   /* width: 30%;*/
+  }
+
+  .text-center{
+    /* writing-mode: vertical-rl;
+    transform: rotate(180deg);*/
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #262A22;
+    margin-left: 1opx;
+  }
+
+  .game-cont {
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    justify-content: center;
+  }
+
+  #mygames{
+    padding-top: 5px;
+    font-size: 1em;
+  }
+  .dados-boton {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+   /* justify-content: flex-end !important;*/
+    align-items: flex-start;
+    padding: 0 !important;
+    margin: 0 !important;
+   /* width: 100vw !important;*/
+    box-sizing: border-box;
+    gap: 0 !important;
+  }
+
+  /* Tabla a la izquierda, ocupa ~30% */
+  .scores {
+  /*  flex: 0 0 15%; /* no crece ni achica, 15% ancho */
+    margin: 0;
+    width: 30% !important; /* evitar conflicto */
+  }
+
+  /* Dados en el centro, en columna */
+  .dice-side {
+    /*flex: 0 0 15%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10% !important;
+  }
+
+  .dice-container {
+    display: flex !important;
+    flex-direction: column !important; /* dados en columna */
+    gap: 10px;
     justify-content: center;
     align-items: center;
   }
-  
-  #confirm-modal > div {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 300px;
-    text-align: center;
+
+  /* Ajustar tamaño dados para que se vean verticales */
+  .dice {
+    width: 50px;  /* tamaño fijo para que no se compriman */
+    height: 50px;
   }
-  
-  #modal-confirm-btn,
-  #modal-cancel-btn {
-    margin: 10px;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-  }
-  
-  #modal-cancel-btn {
-    background-color: #dc3545;
-  }
-  
-  #generala-doble-modal {
-    display: none; /*se oculta por defecto */
-    position: fixed; /*fija la posición del modal */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /*fondo translucido */
-    z-index: 1000; /* modal por encima de otros elementos */
-    justify-content: center;
+
+  /* Estado de juego y botón a la derecha, vertical */
+  .controlesYmas {
+    flex: 0 0 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    padding: 10px;
   }
-  
-  #generala-doble-modal .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
+
+  .game-state {
+    margin-bottom: 8px;
+    width: 100%;
     text-align: center;
   }
-  
-  #generala-doble-modal .modal-content p {
-    font-size: 16px;
-    margin-bottom: 20px;
+
+  .controls {
+    width: 100%;
+    margin-top: 0;
   }
-  
-  #generala-doble-modal .modal-content button {
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+}
+
+
+@media screen and (max-width: 768px) {
+  .dados-boton {
+   /* flex-direction: column;*/
+    align-items: center;
   }
-  
-  #generala-doble-modal .modal-content .confirm-doble-btn {
-    background-color: #4CAF50; /*color para el boton de confirmacion */
-    color: white;
+
+  .scores {
+    width: 90%;
   }
-  
-  #generala-doble-modal .modal-content .cancel-doble-btn {
-    background-color: #f44336; /*color para el botn de cancelar */
-    color: white;
+
+  .dice-container {
+    flex-direction: row;
   }
-  
-  #generala-doble-modal .modal-content button:hover {
-    opacity: 0.8;
+
+  .controls {
+    width: 100%;
   }
-  
-  @media screen and (min-width: 1024px) {
-  
-  }
+}

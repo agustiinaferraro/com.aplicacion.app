@@ -7,7 +7,26 @@ html, body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  background: #F9E7D2;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+  /*background: url('../assets/imgs/fondo.png') no-repeat center center;*/
+  background-size: cover;
+  overflow-x: hidden;
+  width: 100vw;
+    background-color: #121212;
+
+}
+
+
+#btn-g2-back {
+  position: fixed;
+  left: 10%;
+  top: 3rem;
+  font-size: 3rem;
+  color: white;
+  background: none;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.3s ease;
 }
 
 #main {
@@ -16,74 +35,107 @@ html, body {
   align-items: center;
   flex-direction: column;
   gap: 1rem;
-  background: #F9E7D2;
-  width: 100%;
+  /*background-image: url('../assets/imgs/fondo.png');*/
   max-width: 400px; 
   padding: 1rem; 
 }
 
 #mygames {
-  font-size: 3rem;
-  text-align: center;
-  font-weight: bold;
-  color: #262A22;
-  transition: font-size 0.3s ease;
+  font-size: 4rem;
+  font-weight: 900;
+  color: #bbb;
+  text-shadow:
+    1px 1px 2px #666,
+    -1px -1px 1px #fff,
+    2px 2px 6px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 #mygames.small {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  color: #787878;
 }
 
 #main > button {
-  margin-top: 1rem; 
+  margin-top: 2rem;
   width: 100%;
   font-size: 1.5rem;
   display: block;
-  padding: 3rem; 
-  border-radius: 8px;
-  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.2); /*sombra suave */
-  border: none;
-  color: rgb(241, 241, 241);
-  transition: all 0.3s ease;
+  padding: 3rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: #ddd;
+  text-shadow:
+    1px 1px 2px #111, /* sombra negra suave para profundidad */
+    -1px -1px 1px #555; /* sombra clara para volumen */
+  -webkit-text-stroke: 0.8px #222; /* borde oscuro para relieve */
+
+  background: linear-gradient(to top, #222, #444);
+  border: 3px solid #000;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    0 6px 0 #000,
+    0 10px 15px rgba(0, 0, 0, 0.6);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, color 0.2s ease, text-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 #main > button:hover {
-  color: rgb(255, 255, 255);
-  transform: scale(1.09); /*se agranda */
-  box-shadow: -2px -2px 8px rgba(0, 0, 0, 0.3); /*sombra fuerte hover */
+  transform: translateY(-3px);
+  color: #fff;
+  text-shadow:
+    2px 2px 4px #000,
+    -2px -2px 4px #888;
 }
+
+
+/* Click: se hunde */
+#main > button:active {
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.6),
+    0 2px 0 #000,
+    0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
 
 .nodisp {
   display: none !important;
 }
 
 #g1, #g2, #g3 {
-  background: #F9E7D2;
-  color: #262A22;
+    transform: scale(1.09); /*se agranda */
 }
 
 #btn-g1 {
-  background-color: #F08113;
+  clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
 }
 
 #btn-g1:hover {
-  background-color: #a3580c;
+  background: linear-gradient(to top, #60ffa2, #4dcf83);
+  background-color: #00FF9F;
 }
 
 #btn-g2 {
-  background-color: #5A9133;
+  clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);
 }
 
 #btn-g2:hover {
-  background-color: #3e6223;
+  background: linear-gradient(to top, #64f0ff, #53c6d3);
+  background-color: rgb(0, 255, 255); 
 }
 
 #btn-g3 {
-  background-color: #E94A20;
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
 }
 
 #btn-g3:hover {
-  background-color: #a6381a;
+  background: linear-gradient(to top, #ddff54, #b2d135);
+  background-color: rgb(255, 255, 51);
 }
 
 @media screen and (min-width: 1024px) {
@@ -91,11 +143,10 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row; /* Cambiado de column a row */
+    flex-direction: row; 
     gap: 1rem;
-    background: #F9E7D2;
     width: 100%;
-    max-width: 800px; /* Ajustado para que haya más espacio horizontal */
+    max-width: 800px; 
     padding: 1rem;
   }
 }
@@ -106,6 +157,10 @@ html, body {
     flex-direction: row;
     gap: 1rem;
     max-width: 100%;
+  }
+
+  .dados-boton {
+    display: flex;
   }
 
   #main > button {
