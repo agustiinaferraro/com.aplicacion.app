@@ -83,14 +83,14 @@ width: 90vw;
 #estado-trivia {
   text-align: center;
   font-size: 1rem;
-  font-weight: 300;
-  color: #ffffff;
+  /*font-weight: 900;*/
+  color: #d1d1d1;
 }
 
 /* Feedback */
 #feedback {
   text-align: center;
-  /*font-weight: 700;*/
+  font-weight: 700;
   margin-top: 10px;
   margin-bottom: 5px;
   min-height: 70px;
@@ -216,7 +216,6 @@ h3 {
 #btn-cambiar-jugadores,
 #btn-cerrar-modal,
 #btn-siguiente-turno  {
-  background: linear-gradient(90deg, #4CAF50 0%, #81C784 100%);
   border: 1px solid #1c421e;
   border-radius: 8px;
   padding: 8px 16px;
@@ -237,6 +236,30 @@ h3 {
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
+#btn-rejugar:hover{
+  background: linear-gradient(90deg, #cfb000 0%, #b69a00 100%);
+}
+
+#btn-rejugar{
+  background: linear-gradient(90deg, #bfa302 0%, #9e8701 100%);
+}
+
+#btn-cambiar-jugadores:hover{
+  background: linear-gradient(90deg, #0562b4 0%, #04559b 100%);
+}
+
+#btn-cambiar-jugadores{
+  background: linear-gradient(90deg, #055aa4 0%, #044b88 100%);
+}
+
+#btn-cerrar-modal:hover{
+  background: linear-gradient(90deg, #8405a4 0%, #6a0484 100%);
+}
+
+#btn-cerrar-modal{
+  background: linear-gradient(90deg, #740590 0%, #5a036f 100%);
+}
+
 #btn-rejugar:active,
 #btn-cambiar-jugadores:active,
 #btn-cerrar-modal:active,
@@ -245,6 +268,17 @@ h3 {
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
+#btn-siguiente-nombre {
+  cursor: pointer;
+}
+
+/* Hover y efecto de click */
+#btn-siguiente-turno:hover {
+  transform: scale(1.05);
+}
+#btn-siguiente-turno:active {
+  transform: scale(0.95);
+}
 /* Tamaño dinámico para mygames 
 #mygames.small {
   font-size: 1.2rem;

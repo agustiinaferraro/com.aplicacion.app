@@ -29,10 +29,10 @@
         text-decoration: underline;
       }
 
-      #btn-g1-back:disabled {
+    /*  #btn-g1-back:disabled {
         cursor: not-allowed; /* mouse deshabilitado */
-        opacity: 0.5; /*reduce la opacidad */
-      }
+       /* opacity: 0.5; /*reduce la opacidad */
+      /*}*/
 
       #g1 table {
         width: 80%;

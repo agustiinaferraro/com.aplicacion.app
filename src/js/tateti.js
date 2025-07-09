@@ -34,7 +34,7 @@ function manejarCeldaClic(eventoCelda) {// funcion que se llama cuando se hace c
             celdaClicada.classList.add('estrella');
     }
 
-    botonBack.disabled = true;
+    //botonBack.disabled = true;
 
     validarResultado(); // verifica si hay un ganador o empate
 }
@@ -104,7 +104,7 @@ function terminarJuego() {
 
     });
 
-    botonBack.disabled = false;
+    //botonBack.disabled = false;
 }
 
 function reiniciarJuego() {
@@ -127,7 +127,7 @@ function reiniciarJuego() {
     });
 
     //control de botones
-    botonBack.disabled = false; 
+   // botonBack.disabled = false; 
     botonReiniciar.disabled = true;
 }
 

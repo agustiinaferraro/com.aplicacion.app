@@ -175,7 +175,7 @@ const drawState = () => { //funcion para actualizar los datos
 
 const rollDices = () => {
   // Deshabilitar el botón "back" al tirar los dados
-  document.getElementById("btn-g2-back").setAttribute("disabled", "disabled");
+  //document.getElementById("btn-g2-back").setAttribute("disabled", "disabled");
 
   for (let i = 0; i < game.dices.length; i++) {
     if (game.moves === 1 || game.selectedDices[i]) { 
@@ -249,8 +249,9 @@ const gameOver = () => {
       winner = i;
     }
   }
-  document.getElementById("btn-g2-back").removeAttribute("disabled");//se habilita el boton
+  //document.getElementById("btn-g2-back").removeAttribute("disabled");//se habilita el boton
   showModal(`J${winner} ganó con ${winningScore} puntos`); 
+  document.getElementById("btn-generala-restart").style.display = "inline-block";
 }
 
 
@@ -335,14 +336,14 @@ const showConfirmModal = (gameIndex) => {
 const showModal = (message) => {
   const modal = document.getElementById("alert-modal");
   const modalMessage = document.getElementById("modal-message");
-  const closeButton = document.getElementById("modal-close-btn");
+  //const closeButton = document.getElementById("modal-close-btn");
 
   modalMessage.innerText = message; //actualiza el mensaje
   modal.style.display = "block"; // muestra el modal
 
-  closeButton.onclick = () => {//cuando hace click en el boton de cerrar
+  /*closeButton.onclick = () => {//cuando hace click en el boton de cerrar
     modal.style.display = "none"; //oculta el modal
-  };
+  };*/
 
   window.onclick = (event) => {  //cuando hace click fuera del modal, lo cierra
     if (event.target === modal) {
@@ -433,3 +434,38 @@ document.getElementById("modal-accept-btn").addEventListener("click", () => {
 document.getElementById("dice-roll").addEventListener("click", rollDices);
 
 document.addEventListener("DOMContentLoaded", () => { initGame() });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("modal-accept-btn").addEventListener("click", () => {
+  document.getElementById("alert-modal").style.display = "none";
+  document.getElementById("btn-generala-restart").style.display = "none";
+});
+
+
+
+
+document.getElementById("btn-generala-restart").addEventListener("click", () => {
+  document.getElementById("alert-modal").style.display = "none";
+  game.dices = [0, 0, 0, 0, 0];
+  game.selectedDices = [false, false, false, false, false];
+  game.turn = 1;
+  game.moves = 1;
+  game.round = 1;
+  game.scores = [];
+
+  document.getElementById("btn-generala-restart").style.display = "none";
+
+  initGame();
+});

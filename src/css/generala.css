@@ -300,7 +300,26 @@
   background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 50%, #ffecec 100%);
 }
 
-/* === RESPONSIVE === */
+#btn-generala-restart {
+  display: none;          /* lo ocultás desde el inicio */
+  margin: 20px auto 0; 
+  padding: 10px 20px;     
+  font-size: 1.1rem;
+  cursor: pointer;
+  background-color: #0860b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+#btn-generala-restart:hover {
+  background-color: #002e5c;
+}
+
+
+/*RESPONSIVE */
 @media screen and (max-width: 768px) and (orientation: landscape) {
 
   #g2{
