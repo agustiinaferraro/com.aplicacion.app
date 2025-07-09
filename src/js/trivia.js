@@ -234,8 +234,6 @@ function mostrarPregunta() {
       mostrarPregunta();
     }
   };
-
-  //actualizarColorFondoJugador();
 }
 
 
@@ -362,7 +360,6 @@ function mostrarResultadoIndividual() {
       mostrarResultadosFinales();
     }
   };
-  //actualizarColorFondoJugador();
 }
 
 
