@@ -56,6 +56,7 @@ function achicarMyGames() {
   myGamesEl.classList.add("small");
 }
 
+
 function restaurarMyGames() {
   //le saco la clase para agrandar el h1
   myGamesEl.classList.remove("small");
@@ -77,16 +78,16 @@ function iniciarIngresoNombres() {
   // variable para controlar en qué etapa del ingreso de nombres estamos (0 para jugador 1, 1 para jugador 2)
   let etapa = 0;
 
-  // selecciono el input y el botón para poder trabajar con ellos
+  // selecciono el input y el boton para poder trabajar con ellos
   const inputNombre = document.getElementById("input-nombre");
   const btnSiguiente = document.getElementById("btn-siguiente-nombre");
 
-  // habilito el botón solo si hay texto (evito que esté vacío)
+  // habilito el boton solo si hay texto (evito que este vacio)
   inputNombre.addEventListener("input", () => {
     btnSiguiente.disabled = inputNombre.value.trim() === "";
   });
 
-  // función que se ejecuta al hacer click en el botón "siguiente" (para procesar el nombre ingresado)
+  // funcion que se ejecuta al hacer click en el boton "siguiente" (para procesar el nombre ingresado)
   btnSiguiente.onclick = () => {
     // con la propiedad value obtengo el texto del input, y con trim elimino los posibles espacios en blanco
     const nombre = inputNombre.value.trim();
@@ -126,7 +127,7 @@ function iniciarIngresoNombres() {
         // guardo el nombre ingresado del jugador 2 en la posición 1 del array "nombres"
         nombres[1] = nombre2;
 
-        // ejecuta la función que inicia el juego con los datos ya ingresados
+        // ejecuta la funciOn que inicia el juego con los datos ya ingresados
         prepararJuego();
       };
     }
@@ -170,11 +171,11 @@ function mostrarPregunta() {
   const pregunta = preguntasJugador[jugadorActual][rondaActual];
 
   //muestra en la pantalla quin está jugando y q nro de pregunta es (rondaActual + 1 porque empieza en 0)
-estadoTrivia.innerHTML = `
-  <span style="font-weight: 700; color:rgb(38, 231, 150);">
-    ${nombres[jugadorActual]}
-  </span>, pregunta ${rondaActual + 1} / 8
-`;
+  estadoTrivia.innerHTML = `
+    <span style="font-weight: 700; color:rgb(38, 231, 150);">
+      ${nombres[jugadorActual]}
+    </span>, pregunta ${rondaActual + 1} / 8
+  `;
   
   //agrego esto al div de la trivia
   //pregunta es la variable que contiene el array de preguntas, y .pregunta agarro la propiedad pregunta
@@ -192,7 +193,7 @@ estadoTrivia.innerHTML = `
       ${pregunta.opciones.map((op, i) => `<button class="opcion" data-i="${i}">${op}</button>`).join("")}
     </div>
     <p id="feedback">
-      <span id="mensaje-feedback"></span><br/>
+      <span id="mensaje-feedback"></span>
       <span id="versiculo" style="font-size:0.9em; color:#555;"></span>
     </p>
     <button id="btn-siguiente" disabled>Siguiente</button>
@@ -204,7 +205,8 @@ estadoTrivia.innerHTML = `
   //al hacer click llamo a manejarRespuesta 
   //y para cada boton (variable btn) leo su indice guardado en el atributo data-i con btn.dataset.i
   //dataset es un objeto que contiene todos los atributos html que empiezan con data de un elemento
-    btn.onclick = () => manejarRespuesta(parseInt(btn.dataset.i));
+    btn.onclick = () => manejarRespuesta(parseInt(btn.dataset.i)); //parseint transforma el atributo html a nro, 
+                              // porque la funcion manejar respuesta espera un nro para comparar la opcion elegida con la rta correcta
   });
 
   //agarro el boton "siguiente"
@@ -385,7 +387,6 @@ function mostrarResultadosFinales() {
   modal.style.left = "0";
   modal.style.width = "100%";
   modal.style.height = "100%";
-  //modal.style.backgroundColor = "rgba(0,0,0,0.6)";
   modal.style.display = "flex";
   modal.style.justifyContent = "center";
   modal.style.alignItems = "center";
@@ -423,7 +424,7 @@ modal.innerHTML = `
   //agrego el modal que acabo de crear al final del body de la pag
   document.body.appendChild(modal);
 
-  //cuando hago click en el boton para cerrar
+  //cuando hago click en el boton para volver al menu
   document.getElementById("btn-cerrar-modal").onclick = () => { 
 
     //se elimina  el modal del body, sacandolo de la pantalla
@@ -454,13 +455,6 @@ modal.innerHTML = `
     iniciarIngresoNombres();
   };
 }
-
-/*
-function actualizarColorFondoJugador() {
-g3.style.background = jugadorActual === 0
-  ? "linear-gradient(135deg, #90EE90 0%, #4CAF50 100%)"
-  : "linear-gradient(135deg, #ADD8E6 0%, #2196F3 100%)";
-}*/
 
 
 function resetJuego() {

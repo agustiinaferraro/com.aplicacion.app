@@ -272,12 +272,25 @@ h3 {
   cursor: pointer;
 }
 
+#btn-siguiente-nombre:hover {
+  transform: scale(1.05);
+}
+
+#btn-siguiente-nombre:active {
+  transform: scale(0.95);
+}
+
 /* Hover y efecto de click */
 #btn-siguiente-turno:hover {
   transform: scale(1.05);
 }
 #btn-siguiente-turno:active {
   transform: scale(0.95);
+}
+
+#mensaje-feedback {
+  display: block;    /*hace que el span se comporte como un bloque */
+  margin-bottom: 5px; 
 }
 /* Tamaño dinámico para mygames 
 #mygames.small {
