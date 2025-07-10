@@ -292,8 +292,166 @@ h3 {
   display: block;    /*hace que el span se comporte como un bloque */
   margin-bottom: 5px; 
 }
-/* Tamaño dinámico para mygames 
-#mygames.small {
-  font-size: 1.2rem;
-  transition: font-size 0.3s ease;
-}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal-contenedor {
+  background: linear-gradient(to top, #222, #444);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.1),
+    0 6px 0 #000,
+    0 10px 15px rgba(0,0,0,0.6);
+  color: #ddd;
+  overflow: hidden;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 0 10px #000;
+}
+
+.modal-contenedor button {
+  display: block;      /* cada boton ocupa una línea */
+  margin-top: 8px;
+  margin: 10px auto 0 auto; /* arriba 10px, laterales auto para centra, abajo 0 */
+}
+
+.modal-contenedor p span:first-child {
+  font-weight: bold;
+}
+
+.modal-contenedor p span.color-azul {
+  color: #3498db;
+}
+
+.modal-contenedor p span.color-verde {
+  color: #2ecc71;
+}
+
+.modal-contenedor p span.puntaje {
+  font-weight: bold;
+  font-size: 1em;
+  color: #fff;
+}
+
+.modal-contenedor h3 {
+  font-weight: bold;
+  font-size: 2em;
+  color: #fff;
+}
+
+.modal-contenedor button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  font-size: 1.1em;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-contenedor button#btn-rejugar {
+  margin-top: 20px;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+
+#contenedorTrivia h3 {
+  color: rgb(255, 255, 255);
+  font-style: italic;
+}
+
+#contenedorTrivia h3 span.nombre {
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+#contenedorTrivia h3 span.puntaje {
+  font-weight: bold;
+  color: rgb(50, 218, 120);
+}
+
+#contenedorTrivia h3 span.total {
+  font-weight: bold;
+  color: rgb(254, 254, 254);
+}
+
+#btn-siguiente-turno {
+  cursor: pointer;
+}
+
+#versiculo {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.jugador-nombre {
+  font-weight: 700;
+  color: rgb(38, 231, 150);
+}
+
+.contenedor-nombre-jugador {
+  text-align: center;
+  max-width: 300px;
+  margin: auto;
+}
+
+.contenedor-nombre-jugador input {
+  padding: 8px;
+  font-size: 1.1em;
+}
+
+.contenedor-nombre-jugador button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 1.1em;
+}
+
+.contenedor-nombre-jugador {
+  text-align: center;
+  max-width: 300px;
+  margin: auto;
+}
+
+.contenedor-nombre-jugador input {
+  padding: 8px;
+  font-size: 1.1em;
+}
+
+.contenedor-nombre-jugador button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 1.1em;
+}
+
+
+
+

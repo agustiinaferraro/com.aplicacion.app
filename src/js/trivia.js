@@ -67,11 +67,11 @@ function iniciarIngresoNombres() {
   estadoTrivia.textContent = ""; // limpio cualquier texto previo del estado del juego
 
   // inserto en el div de la trivia el formulario para ingresar el nombre del Jugador 1
-  contenedorTrivia.innerHTML = ` 
-    <div style="text-align:center; max-width: 300px; margin: auto;">
+  contenedorTrivia.innerHTML = `
+    <div class="contenedor-nombre-jugador">
       <h3>Ingresar nombre del Jugador 1</h3>
-      <input type="text" id="input-nombre" placeholder="Jugador 1" style="padding:8px; font-size:1.1em;" />
-      <button id="btn-siguiente-nombre" disabled style="margin-top:10px; padding:8px 16px; font-size:1.1em;">Siguiente</button>
+      <input type="text" id="input-nombre" placeholder="Jugador 1" />
+      <button id="btn-siguiente-nombre" disabled>Siguiente</button>
     </div>
   `;
 
@@ -102,11 +102,11 @@ function iniciarIngresoNombres() {
     if (etapa === 1) {
 
       // muestro el formulario para que el jugador 2 ingrese su nombre, reescribiendo con innerHTML el contenido anterior
-      contenedorTrivia.innerHTML = `
-        <div style="text-align:center; max-width: 300px; margin: auto;">
+     contenedorTrivia.innerHTML = `
+        <div class="contenedor-nombre-jugador">
           <h3>Ingresar nombre del Jugador 2</h3>
-          <input type="text" id="input-nombre" placeholder="Jugador 2" style="padding:8px; font-size:1.1em;" />
-          <button id="btn-siguiente-nombre" disabled style="margin-top:10px; padding:8px 16px; font-size:1.1em;">Comenzar Juego</button>
+          <input type="text" id="input-nombre" placeholder="Jugador 2" />
+          <button id="btn-siguiente-nombre" disabled>Comenzar Juego</button>
         </div>
       `;
 
@@ -142,7 +142,9 @@ function prepararJuego() {
   const preguntasMezcladas = [...preguntasBiblia].sort(() => Math.random() - 0.5); //si le resto 0.5, hay 50% de probabilidades 
                                                                                 // de que den nros positivos o negativos al restar 0.5, 
                                                                                 // cambiando el orden de los elementos al azar
-
+//Compara dos elementos al azar
+// Si el resultado es negativo,
+// deja el primero antes que el segundo. Si es positivo, intercambialos
 
   //le doy las primeras 8 preguntas al primer jugador, y despues las segundas 8 preguntas                                                                             
   preguntasJugador[0] = preguntasMezcladas.slice(0, 8); 
@@ -171,11 +173,10 @@ function mostrarPregunta() {
   const pregunta = preguntasJugador[jugadorActual][rondaActual];
 
   //muestra en la pantalla quin está jugando y q nro de pregunta es (rondaActual + 1 porque empieza en 0)
-  estadoTrivia.innerHTML = `
-    <span style="font-weight: 700; color:rgb(38, 231, 150);">
-      ${nombres[jugadorActual]}
-    </span>, pregunta ${rondaActual + 1} / 8
-  `;
+ estadoTrivia.innerHTML = `
+  <span class="jugador-nombre">${nombres[jugadorActual]}</span>, pregunta ${rondaActual + 1} / 8
+`;
+
   
   //agrego esto al div de la trivia
   //pregunta es la variable que contiene el array de preguntas, y .pregunta agarro la propiedad pregunta
@@ -194,7 +195,7 @@ function mostrarPregunta() {
     </div>
     <p id="feedback">
       <span id="mensaje-feedback"></span>
-      <span id="versiculo" style="font-size:0.9em; color:#555;"></span>
+      <span id="versiculo"></span>
     </p>
     <button id="btn-siguiente" disabled>Siguiente</button>
   `;
@@ -319,23 +320,18 @@ function mostrarResultadoIndividual() {
   //si el jugador actual es el 0, el texto es "Turno de [nombre del jugador 2]".
   // Si el jugador actual no es 0 (es 1), el texto será "Ver Resultados Finales".
   contenedorTrivia.innerHTML = `
-    <h3 style="color: rgb(255, 255, 255); font-style: italic;">
-      <span style="font-weight: bold; color: rgb(255, 255, 255);">${nombres[jugadorActual]}</span>, respondiste 
-      <span style="font-weight: bold; color:rgb(50, 218, 120);">${puntaje}</span> de 
-      <span style="font-weight: bold; color: rgb(254, 254, 254);">8</span> correctamente.
+    <h3>
+      <span class="nombre">${nombres[jugadorActual]}</span>, respondiste 
+      <span class="puntaje">${puntaje}</span> de 
+      <span class="total">8</span> correctamente.
     </h3>
-    <button 
-      id="btn-siguiente-turno" 
-      cursor: pointer;"
-    >
+    <button id="btn-siguiente-turno">
       ${jugadorActual === 0 
-        ? `Turno de <span style="font-weight: bold; color: rgb(254, 254, 254);">${nombres[1]}</span>` 
+        ? `Turno de <span class="nombre">${nombres[1]}</span>` 
         : "Ver Resultados Finales"
       }
     </button>
   `;
-
-
 
   // limpio el texto que muestra el estado actual del juego
   estadoTrivia.textContent = "";
@@ -378,43 +374,23 @@ function mostrarResultadosFinales() {
   //si no, "ganador" es el nombre del jugador 1
   let ganador = puntajes[0] === puntajes[1] ? "Empate" : puntajes[0] > puntajes[1] ? nombres[0] : nombres[1];
 
-  const modal = document.createElement("div"); //creo un div con los siguientes estilos:
-  modal.style.position = "fixed";
-  modal.style.top = "0";
-  modal.style.left = "0";
-  modal.style.width = "100%";
-  modal.style.height = "100%";
-  modal.style.display = "flex";
-  modal.style.justifyContent = "center";
-  modal.style.alignItems = "center";
-  modal.style.zIndex = "9999";
+  const modal = document.createElement("div"); //creo un div
+  modal.classList.add("modal-overlay");
+
 
   //actualizo el contenido del modal para mostrar los resultados finales:
   //muestro el nombre y puntaje de cada jugador
   //muestro un mensaje que dice si hubo empate o quien gano
   //agrego botones para: volver a jugar con los mismos jugadores, cambiar jugadores o volver al menu
 modal.innerHTML = `
-  <div style="
-    background: linear-gradient(to top, #222, #444);
-    box-shadow:
-      inset 0 2px 4px rgba(255,255,255,0.1),
-      0 6px 0 #000,
-      0 10px 15px rgba(0,0,0,0.6);
-    color: #ddd;
-    overflow: hidden;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 380px;
-    text-align: center;
-    box-shadow: 0 0 10px #000;
-  ">
+  <div class="modal-contenedor">
     <h2>Resultados Finales</h2>
-    <p><span style="font-weight:bold; color:#3498db;">${nombres[0]}</span>: <span style="font-weight:bold; font-size:1em; color:#fff;">${puntajes[0]}</span> / 8</p>
-    <p><span style="font-weight:bold; color:#2ecc71;">${nombres[1]}</span>: <span style="font-weight:bold; font-size:1em; color:#fff;">${puntajes[1]}</span> / 8</p>
-    <h3 style="font-weight:bold; font-size:2em; color:#fff;">${ganador === "Empate" ? "¡Es un empate!" : `¡Ganó ${ganador}!`}</h3>
-    <button id="btn-rejugar" style="margin-top:20px; padding:8px 20px; font-size:1.1em; color:#fff; border:none; border-radius:5px; cursor:pointer;">Volver a jugar</button><br/>
-    <button id="btn-cambiar-jugadores" style="margin-top:10px; padding:8px 20px; font-size:1.1em; color:#fff; border:none; border-radius:5px; cursor:pointer;">Cambiar jugadores</button><br/>
-    <button id="btn-cerrar-modal" style="margin-top:10px; padding:8px 20px; font-size:1.1em; color:#fff; border:none; border-radius:5px; cursor:pointer;">Volver al menú</button>
+    <p><span class="color-azul">${nombres[0]}</span>: <span class="puntaje">${puntajes[0]}</span> / 8</p>
+    <p><span class="color-verde">${nombres[1]}</span>: <span class="puntaje">${puntajes[1]}</span> / 8</p>
+    <h3>${ganador === "Empate" ? "¡Es un empate!" : `¡Ganó ${ganador}!`}</h3>
+    <button id="btn-rejugar">Volver a jugar</button>
+    <button id="btn-cambiar-jugadores">Cambiar jugadores</button>
+    <button id="btn-cerrar-modal">Volver al menú</button>
   </div>
 `;
 
